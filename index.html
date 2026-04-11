@@ -143,6 +143,41 @@
 			    font-size: 28px;
 			  }
 			}
+			.gform-wrapper iframe {
+			  width: 100%;
+			  height: 820px;
+			}
+			
+			@media (max-width: 768px) {
+			  .gform-wrapper iframe {
+			    height: 980px;
+			  }
+			}
+			
+			@media (max-width: 480px) {
+			  .gform-wrapper iframe {
+			    height: 1100px;
+			  }
+			}
+			#loader {
+			  padding: 40px;
+			  text-align: center;
+			  color: #9ca3af;
+			}
+			.gform-wrapper {
+			  background: #111827;
+			  padding: 10px;
+			}
+			.gform-wrapper::before {
+			  content: "";
+			  position: absolute;
+			  top: 0;
+			  left: 0;
+			  width: 100%;
+			  height: 60px;
+			  background: linear-gradient(#111827, transparent);
+			  pointer-events: none;
+			}
 		</style>
 	</head>
 	<body>
@@ -290,16 +325,19 @@
 			<section>
 			  <h2>Kontakt</h2>
 			  <div class="card">
-			
-			    <iframe 
+				<div class="gform-wrapper">
+				<div id="loader">Ładowanie formularza...</div>	
+			    <iframe id="gform"
 			      src="https://docs.google.com/forms/d/e/1FAIpQLSdrEGxrdCG2SMNDslkPVChZ215JplKWMx3QE13K4jHWVsRcbw/viewform?embedded=true"
 			      width="100%"
 			      height="700"
 			      frameborder="0"
 			      style="border:none;"
-				  marginwidth="0">Ładuję…>
+				  loading="lazy" 	
+				  marginwidth="0"
+				  onload="document.getElementById('loader').style.display='none'">Ładuję…>
 			    </iframe>
-			
+				</div>
 			  </div>
 			</section>
 		</div>
