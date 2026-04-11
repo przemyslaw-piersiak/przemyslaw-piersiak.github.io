@@ -35,11 +35,16 @@
 			
 			.hero {
 			  display: flex;
-			  justify-content: space-between;
+			  justify-content: center;   /* klucz */
 			  align-items: center;
-			  gap: 24px;
+			  gap: 28px;
+			
+			  max-width: 1000px;        /* 🔥 ogranicza szerokość */
+			  margin: 0 auto;           /* 🔥 centruje cały blok */
+			
 			  padding: 80px 20px;
 			  background: linear-gradient(135deg, #111827, #0b0f17);
+			  text-align: left;
 			}
 			
 			.hero-text {
@@ -265,14 +270,17 @@
 		</style>
 	</head>
 	<body>
-		<header class="hero">
+		<header>
+		  <div class="hero">
+		    
 		    <div class="hero-text">
-		        <h1>Przemysław Piersiak</h1>
-		        <div class="subtitle">Dev / SysAdmin / PHP / Linux / Security</div>
+		      <h1>Przemysław Piersiak</h1>
+		      <div class="subtitle">Dev / SysAdmin / PHP / Linux / Security</div>
 		    </div>
-
-			<img class="avatar-right" src="user-150x150.jpg" alt="Przemysław Piersiak">
-			
+		
+		    <img src="user-150x150.jpg" class="avatar-right" alt="avatar">
+		
+		  </div>
 		</header>
 		<div class="container">
 			<section>
