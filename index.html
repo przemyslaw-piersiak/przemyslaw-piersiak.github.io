@@ -24,23 +24,17 @@
 			  color: #e6e6e6;
 			  line-height: 1.6;
 			}
-			
-			/* =========================
-			   HERO
-			========================= */
-			
+		
 			header {
 			  padding: 0;
 			}
 			
 			.hero {
 			  display: flex;
-			  justify-content: center;   /* klucz */
+			  justify-content: center;  
 			  align-items: center;
 			  gap: 28px;
-			
-			  max-width: 1000px;        /* 🔥 ogranicza szerokość */
-			  margin: 0 auto;           /* 🔥 centruje cały blok */
+			  margin: 0 auto;           
 			
 			  padding: 80px 20px;
 			  background: linear-gradient(135deg, #111827, #0b0f17);
@@ -73,10 +67,6 @@
 			  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 			}
 			
-			/* =========================
-			   LAYOUT
-			========================= */
-			
 			.container {
 			  max-width: 1000px;
 			  margin: auto;
@@ -93,10 +83,6 @@
 			  margin-bottom: 20px;
 			}
 			
-			/* =========================
-			   CARDS
-			========================= */
-			
 			.card {
 			  background: #111827;
 			  padding: 20px;
@@ -104,28 +90,16 @@
 			  margin-bottom: 15px;
 			}
 			
-			/* =========================
-			   GRID
-			========================= */
-			
 			.grid {
 			  display: grid;
 			  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 			  gap: 15px;
 			}
 			
-			/* =========================
-			   LINKS
-			========================= */
-			
 			a {
 			  color: #60a5fa;
 			  text-decoration: none;
 			}
-			
-			/* =========================
-			   FOOTER
-			========================= */
 			
 			footer {
 			  text-align: center;
@@ -133,10 +107,6 @@
 			  color: #6b7280;
 			  font-size: 14px;
 			}
-			
-			/* =========================
-			   CONTACT SECTION
-			========================= */
 			
 			.contact-section {
 			  margin-top: 40px;
@@ -147,7 +117,6 @@
 			  margin-bottom: 16px;
 			}
 			
-			/* COLLAPSE */
 			.contact-card {
 			  background: #111827;
 			  border-radius: 14px;
@@ -193,13 +162,11 @@
 			  to   { opacity: 1; transform: translateY(0); }
 			}
 			
-			/* ANTI-SPAM */
 			.honeypot {
 			  position: absolute;
 			  left: -9999px;
 			}
 			
-			/* FORM WRAPPER */
 			.form-wrapper {
 			  width: 100%;
 			  height: 850px;
@@ -209,7 +176,6 @@
 			  background: #111827;
 			}
 			
-			/* LOADER */
 			#loader {
 			  position: absolute;
 			  inset: 0;
@@ -221,7 +187,6 @@
 			  font-size: 14px;
 			}
 			
-			/* IFRAME (FIXED — NO 100% HEIGHT BUG) */
 			.form-wrapper iframe {
 			  width: 100%;
 			  height: 850px;
@@ -234,10 +199,6 @@
 			.form-wrapper.loaded iframe {
 			  opacity: 1;
 			}
-			
-			/* =========================
-			   RESPONSIVE
-			========================= */
 			
 			@media (max-width: 768px) {
 			  .hero {
