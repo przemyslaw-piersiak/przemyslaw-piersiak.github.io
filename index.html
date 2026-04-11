@@ -102,16 +102,59 @@
 				padding: 15px;
 				}
 			}
+			.hero {
+			  display: flex;
+			  justify-content: center;
+			  align-items: center;
+			  gap: 24px;
+			  padding: 80px 20px;
+			  background: linear-gradient(135deg, #111827, #0b0f17);
+			  text-align: left;
+			}
+			
+			.avatar-right {
+			  width: 110px;
+			  height: 110px;
+			  border-radius: 50%;
+			  object-fit: cover;
+			  flex-shrink: 0;
+			  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+			  border: 2px solid #1f2937;
+			}
+			
+			.hero-text h1 {
+			  font-size: 42px;
+			  margin: 0;
+			}
+			
+			.subtitle {
+			  color: #9ca3af;
+			  font-size: 18px;
+			}
+			
+			/* MOBILE RESPONSIVE */
+			@media (max-width: 768px) {
+			  .hero {
+			    flex-direction: column;
+			    text-align: center;
+			  }
+			
+			  .hero-text h1 {
+			    font-size: 28px;
+			  }
+			}
 		</style>
 	</head>
 	<body>
-		<header>
-		    <img src="img/user-150x150.jpg"
+		<header class="hero">
+		    <img src="user-150x150.jpg"
 		         alt="Przemysław Piersiak"
-		         class="avatar">
+		         class="avatar-right">
 		
-		    <h1>Przemysław Piersiak</h1>
-		    <div class="subtitle">Dev / SysAdmin / PHP / Linux / Security</div>
+		    <div class="hero-text">
+		        <h1>Przemysław Piersiak</h1>
+		        <div class="subtitle">Dev / SysAdmin / PHP / Linux / Security</div>
+		    </div>
 		</header>
 		<div class="container">
 			<section>
