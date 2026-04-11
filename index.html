@@ -1,9 +1,136 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Przemysław Piersiak personal dev page</title>
-</head>
-<body>
-  <h1>Preparing contents...</h1>
-</body>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Przemysław Piersiak | Dev & SysAdmin</title>
+		<style>
+			body {
+			margin: 0;
+			font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+			background: #0b0f17;
+			color: #e6e6e6;
+			line-height: 1.6;
+			}
+			header {
+			padding: 80px 20px;
+			text-align: center;
+			background: linear-gradient(135deg, #111827, #0b0f17);
+			}
+			h1 {
+			font-size: 42px;
+			margin-bottom: 10px;
+			}
+			.subtitle {
+			color: #9ca3af;
+			font-size: 18px;
+			}
+			.container {
+			max-width: 1000px;
+			margin: auto;
+			padding: 40px 20px;
+			}
+			section {
+			margin-bottom: 60px;
+			}
+			h2 {
+			border-left: 4px solid #3b82f6;
+			padding-left: 12px;
+			margin-bottom: 20px;
+			}
+			.card {
+			background: #111827;
+			padding: 20px;
+			border-radius: 12px;
+			margin-bottom: 15px;
+			}
+			ul {
+			padding-left: 20px;
+			}
+			.grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 15px;
+			}
+			a {
+			color: #60a5fa;
+			text-decoration: none;
+			}
+			footer {
+			text-align: center;
+			padding: 40px;
+			color: #6b7280;
+			font-size: 14px;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>Przemysław Piersiak</h1>
+			<div class="subtitle">Dev / SysAdmin / PHP / Linux / Security</div>
+		</header>
+		<div class="container">
+			<section>
+				<h2>O mnie</h2>
+				<div class="card">
+					Administrator systemów i programista PHP z 15+ lat doświadczenia.
+					Specjalizacja: Linux, Windows Server, bezpieczeństwo IT, optymalizacja serwerów i backend.
+				</div>
+			</section>
+			<section>
+				<h2>Umiejętności</h2>
+				<div class="grid">
+					<div class="card">
+						<b>Systemy</b>
+						<ul>
+							<li>Linux (Debian, Ubuntu, CentOS)</li>
+							<li>Windows Server</li>
+							<li>Active Directory</li>
+						</ul>
+					</div>
+					<div class="card">
+						<b>Backend</b>
+						<ul>
+							<li>PHP</li>
+							<li>MySQL</li>
+							<li>API / integracje</li>
+						</ul>
+					</div>
+					<div class="card">
+						<b>Security</b>
+						<ul>
+							<li>Audyt systemów</li>
+							<li>Analiza incydentów</li>
+							<li>Hardening serwerów</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h2>Projekty</h2>
+				<div class="card">
+					<a href="https://nettg.pl" target="_blank">nettg.pl</a>
+				</div>
+				<div class="card">
+					<a href="https://wpr.pl" target="_blank">wpr.pl</a>
+				</div>
+				<div class="card">
+					<a href="https://solidarnosckatowice.pl" target="_blank">solidarnosckatowice.pl</a>
+				</div>
+				<div class="card">
+					<a href="https://energiapress.pl" target="_blank">energiapress.pl</a>
+				</div>
+			</section>
+			<section>
+				<h2>Kontakt</h2>
+				<div class="card">
+					Email: twoj@email.pl<br/>
+					Facebook: <a href="https://facebook.com/przemyslaw.piersiak">link</a>
+				</div>
+			</section>
+		</div>
+		<footer>
+			© 2026 Przemysław Piersiak
+		</footer>
+	</body>
 </html>
