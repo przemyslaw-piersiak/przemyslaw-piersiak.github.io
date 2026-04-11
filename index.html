@@ -25,18 +25,29 @@
 			  line-height: 1.6;
 			}
 			
-			/* HEADER / HERO */
+			/* =========================
+			   HERO
+			========================= */
+			
 			header {
+			  padding: 0;
+			}
+			
+			.hero {
 			  display: flex;
-			  flex-direction: column;
+			  justify-content: space-between;
 			  align-items: center;
-			  gap: 12px;
+			  gap: 24px;
 			  padding: 80px 20px;
-			  text-align: center;
 			  background: linear-gradient(135deg, #111827, #0b0f17);
 			}
 			
-			h1 {
+			.hero-text {
+			  display: flex;
+			  flex-direction: column;
+			}
+			
+			.hero-text h1 {
 			  font-size: 42px;
 			  margin: 0;
 			}
@@ -44,18 +55,23 @@
 			.subtitle {
 			  color: #9ca3af;
 			  font-size: 18px;
+			  margin-top: 6px;
 			}
 			
-			.avatar {
+			.avatar-right {
 			  width: 110px;
 			  height: 110px;
 			  border-radius: 50%;
 			  object-fit: cover;
-			  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+			  flex-shrink: 0;
 			  border: 2px solid #1f2937;
+			  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 			}
 			
-			/* LAYOUT */
+			/* =========================
+			   LAYOUT
+			========================= */
+			
 			.container {
 			  max-width: 1000px;
 			  margin: auto;
@@ -72,7 +88,10 @@
 			  margin-bottom: 20px;
 			}
 			
-			/* CARDS */
+			/* =========================
+			   CARDS
+			========================= */
+			
 			.card {
 			  background: #111827;
 			  padding: 20px;
@@ -80,24 +99,29 @@
 			  margin-bottom: 15px;
 			}
 			
-			ul {
-			  padding-left: 20px;
-			}
+			/* =========================
+			   GRID
+			========================= */
 			
-			/* GRID */
 			.grid {
 			  display: grid;
 			  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 			  gap: 15px;
 			}
 			
-			/* LINKS */
+			/* =========================
+			   LINKS
+			========================= */
+			
 			a {
 			  color: #60a5fa;
 			  text-decoration: none;
 			}
 			
-			/* FOOTER */
+			/* =========================
+			   FOOTER
+			========================= */
+			
 			footer {
 			  text-align: center;
 			  padding: 40px;
@@ -105,17 +129,9 @@
 			  font-size: 14px;
 			}
 			
-			/* RESPONSIVE */
-			@media (max-width: 768px) {
-			  h1 { font-size: 28px; }
-			  header { padding: 50px 15px; }
-			  .container { padding: 20px 12px; }
-			  .card { padding: 15px; }
-			}
-			
-			/* ========================= */
-			/* CONTACT SECTION 2.0       */
-			/* ========================= */
+			/* =========================
+			   CONTACT SECTION
+			========================= */
 			
 			.contact-section {
 			  margin-top: 40px;
@@ -126,7 +142,7 @@
 			  margin-bottom: 16px;
 			}
 			
-			/* COLLAPSE CARD */
+			/* COLLAPSE */
 			.contact-card {
 			  background: #111827;
 			  border-radius: 14px;
@@ -162,7 +178,6 @@
 			  transform: rotate(90deg);
 			}
 			
-			/* CONTENT */
 			.contact-content {
 			  margin-top: 16px;
 			  animation: fadeIn 0.3s ease;
@@ -173,7 +188,7 @@
 			  to   { opacity: 1; transform: translateY(0); }
 			}
 			
-			/* ANTI-SPAM HONEYPOT */
+			/* ANTI-SPAM */
 			.honeypot {
 			  position: absolute;
 			  left: -9999px;
@@ -201,7 +216,7 @@
 			  font-size: 14px;
 			}
 			
-			/* IFRAME */
+			/* IFRAME (FIXED — NO 100% HEIGHT BUG) */
 			.form-wrapper iframe {
 			  width: 100%;
 			  height: 850px;
@@ -215,11 +230,24 @@
 			  opacity: 1;
 			}
 			
-			/* MOBILE ADJUST */
+			/* =========================
+			   RESPONSIVE
+			========================= */
+			
 			@media (max-width: 768px) {
+			  .hero {
+			    flex-direction: column;
+			    text-align: center;
+			  }
+			
+			  .hero-text h1 {
+			    font-size: 28px;
+			  }
+			
 			  .form-wrapper {
 			    height: 980px;
 			  }
+			
 			  .form-wrapper iframe {
 			    height: 980px;
 			  }
@@ -229,6 +257,7 @@
 			  .form-wrapper {
 			    height: 1100px;
 			  }
+			
 			  .form-wrapper iframe {
 			    height: 1100px;
 			  }
@@ -237,14 +266,13 @@
 	</head>
 	<body>
 		<header class="hero">
-		    <img src="user-150x150.jpg"
-		         alt="Przemysław Piersiak"
-		         class="avatar-right">
-		
 		    <div class="hero-text">
 		        <h1>Przemysław Piersiak</h1>
 		        <div class="subtitle">Dev / SysAdmin / PHP / Linux / Security</div>
 		    </div>
+
+			<img class="avatar-right" src="user-150x150.jpg" alt="Przemysław Piersiak">
+			
 		</header>
 		<div class="container">
 			<section>
