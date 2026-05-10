@@ -28,198 +28,432 @@
 		  gtag('config', 'G-ESF927GTZG');
 		</script>
 		<style>
-			body{
-  margin:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  background:#0b0f17;
-  color:#e5e7eb;
-  line-height:1.6;
-}
-
-/* HERO */
-.hero{
-  max-width:1000px;
-  margin:0 auto;
-  padding:80px 20px 40px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.hero h1{
-  margin:0;
-  font-size:42px;
-}
-
-.subtitle{
-  color:#9ca3af;
-  margin-top:8px;
-}
-
-.avatar{
-  width:110px;
-  height:110px;
-  border-radius:50%;
-  border:1px solid rgba(255,255,255,0.08);
-}
-
-/* LAYOUT */
-.container{
-  max-width:1000px;
-  margin:auto;
-  padding:0 20px 80px;
-}
-
-.panel{
-  margin-bottom:50px;
-}
-
-.panel h2{
-  font-size:16px;
-  letter-spacing:0.5px;
-  border-left:3px solid #3b82f6;
-  padding-left:10px;
-  margin-bottom:15px;
-}
-
-/* CARDS GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:12px;
-}
-
-.card{
-  background:#111827;
-  padding:14px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,0.06);
-}
-
-/* PROJECT TILES */
-.tile{
-  background:#111827;
-  padding:14px;
-  border-radius:12px;
-  text-decoration:none;
-  color:#60a5fa;
-  border:1px solid rgba(255,255,255,0.06);
-}
-
-/* LIST */
-.list{
-  color:#9ca3af;
-  padding-left:18px;
-}
-
-/* CONTACT */
-.contact summary{
-  cursor:pointer;
-  font-weight:600;
-}
-
-.form{
-  width:100%;
-  height:700px;
-  border:0;
-  margin-top:10px;
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  color:#6b7280;
-  padding:40px;
-  font-size:13px;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-  .hero{
-    flex-direction:column;
-    text-align:center;
-    gap:20px;
-  }
-  .hero h1{
-    font-size:30px;
-  }
-}
+			body {
+			  margin: 0;
+			  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+			  background: #0b0f17;
+			  color: #e6e6e6;
+			  line-height: 1.6;
+			}
+		
+			header {
+			  padding: 0;
+			}
+			
+			.hero {
+			  display: flex;
+			  justify-content: center;  
+			  align-items: center;
+			  gap: 28px;
+			  margin: 0 auto;           
+			
+			  padding: 80px 20px;
+			  background: linear-gradient(135deg, #111827, #0b0f17);
+			  text-align: left;
+			}
+			
+			.hero-text {
+			  display: flex;
+			  flex-direction: column;
+			}
+			
+			.hero-text h1 {
+			  font-size: 42px;
+			  margin: 0;
+			}
+			
+			.subtitle {
+			  color: #9ca3af;
+			  font-size: 18px;
+			  margin-top: 6px;
+			}
+			
+			.avatar-right {
+			  width: 110px;
+			  height: 110px;
+			  border-radius: 50%;
+			  object-fit: cover;
+			  flex-shrink: 0;
+			  border: 2px solid #1f2937;
+			  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+			}
+			
+			.container {
+			  max-width: 1000px;
+			  margin: auto;
+			  padding: 40px 20px;
+			}
+			
+			section {
+			  margin-bottom: 60px;
+			}
+			
+			h2 {
+			  border-left: 4px solid #3b82f6;
+			  padding-left: 12px;
+			  margin-bottom: 20px;
+			}
+			
+			.card {
+			  background: #111827;
+			  padding: 20px;
+			  border-radius: 12px;
+			  margin-bottom: 15px;
+			}
+			
+			.grid {
+			  display: grid;
+			  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			  gap: 15px;
+			}
+			
+			a {
+			  color: #60a5fa;
+			  text-decoration: none;
+			}
+			
+			footer {
+			  text-align: center;
+			  padding: 40px;
+			  color: #6b7280;
+			  font-size: 14px;
+			}
+			
+			.contact-section {
+			  margin-top: 40px;
+			}
+			
+			.contact-subtitle {
+			  color: #9ca3af;
+			  margin-bottom: 16px;
+			}
+			
+			.contact-card {
+			  background: #111827;
+			  border-radius: 14px;
+			  padding: 14px 18px;
+			  overflow: hidden;
+			  transition: all 0.25s ease;
+			}
+			
+			.contact-card summary {
+			  cursor: pointer;
+			  list-style: none;
+			  font-weight: 600;
+			  display: flex;
+			  justify-content: space-between;
+			  align-items: center;
+			  color: #e5e7eb;
+			}
+			
+			.contact-card summary::-webkit-details-marker {
+			  display: none;
+			}
+			
+			.arrow {
+			  transition: transform 0.3s ease;
+			}
+			
+			.contact-card[open] {
+			  background: #0f172a;
+			  transform: scale(1.01);
+			}
+			
+			.contact-card[open] .arrow {
+			  transform: rotate(90deg);
+			}
+			
+			.contact-content {
+			  margin-top: 16px;
+			  animation: fadeIn 0.3s ease;
+			}
+			
+			@keyframes fadeIn {
+			  from { opacity: 0; transform: translateY(-6px); }
+			  to   { opacity: 1; transform: translateY(0); }
+			}
+			
+			.honeypot {
+			  position: absolute;
+			  left: -9999px;
+			}
+			
+			.form-wrapper {
+			  width: 100%;
+			  height: 850px;
+			  border-radius: 12px;
+			  overflow: hidden;
+			  position: relative;
+			  background: #111827;
+			}
+			
+			#loader {
+			  position: absolute;
+			  inset: 0;
+			  display: flex;
+			  justify-content: center;
+			  align-items: center;
+			  background: #111827;
+			  color: #9ca3af;
+			  font-size: 14px;
+			}
+			
+			.form-wrapper iframe {
+			  width: 100%;
+			  height: 850px;
+			  border: 0;
+			  display: block;
+			  opacity: 0;
+			  transition: opacity 0.35s ease;
+			}
+			
+			.form-wrapper.loaded iframe {
+			  opacity: 1;
+			}
+			
+			@media (max-width: 768px) {
+			  .hero {
+			    flex-direction: column;
+			    text-align: center;
+			  }
+			
+			  .hero-text h1 {
+			    font-size: 28px;
+			  }
+			
+			  .form-wrapper {
+			    height: 980px;
+			  }
+			
+			  .form-wrapper iframe {
+			    height: 980px;
+			  }
+			}
+			
+			@media (max-width: 480px) {
+			  .form-wrapper {
+			    height: 1100px;
+			  }
+			
+			  .form-wrapper iframe {
+			    height: 1100px;
+			  }
+			}
 		</style>
 	</head>
 	<body>
-			<header class="hero">
-		  <div class="hero-left">
-		    <h1>Przemysław Piersiak</h1>
-		    <p class="subtitle">
-		      IT Engineer | Infrastructure • Linux • Windows • Security • Backend Systems
-		    </p>
-		  </div>
+		<header>
+		  <div class="hero">
+		    
+		    <div class="hero-text">
+		      <h1>Przemysław Piersiak</h1>
+		      <div class="subtitle">IT Engineer | Hardware & Software IT Services | System Administration & Infrastructure Support</div>
+		    </div>
 		
-		  <img src="user-150x150.jpg" class="avatar">
+		    <img src="user-150x150.jpg" class="avatar-right" alt="avatar">
+		
+		  </div>
 		</header>
-		
-		<main class="container">
-		
-		<section class="panel">
-		  <h2>Profile</h2>
-		  <p>
-		    Administrator systemów i programista PHP z ponad 15-letnim doświadczeniem w środowiskach produkcyjnych.
-		    Specjalizacja: infrastruktura IT, systemy webowe, hardware, incident response i recovery.
-		  </p>
-		</section>
-		
-		<section class="panel">
-		  <h2>Core Systems</h2>
-		
-		  <div class="grid">
-		    <div class="card">Linux / Windows Server / AD</div>
-		    <div class="card">Networking / LAN / WAN / VPN</div>
-		    <div class="card">PHP / MySQL / Backend systems</div>
-		    <div class="card">Security / Incident response</div>
-		    <div class="card">Hardware diagnostics / recovery</div>
-		    <div class="card">Performance / optimization</div>
-		  </div>
-		</section>
-		
-		<section class="panel">
-		  <h2>Engineering Scope</h2>
-		  <ul class="list">
-		    <li>System administration & infrastructure design</li>
-		    <li>Production environment maintenance</li>
-		    <li>Failure analysis & recovery</li>
-		    <li>Backend system development</li>
-		    <li>Security auditing & remediation</li>
-		    <li>Hardware-level diagnostics</li>
-		  </ul>
-		</section>
-		
-		<section class="panel">
-		  <h2>Projects</h2>
-		
-		  <div class="grid">
-		    <a class="tile" href="https://nettg.pl">nettg.pl</a>
-		    <a class="tile" href="https://wpr.pl">wpr.pl</a>
-		    <a class="tile" href="https://energiapress.pl">energiapress.pl</a>
-		    <a class="tile" href="https://solidarnosckatowice.pl">solidarnosckatowice.pl</a>
-		  </div>
-		</section>
-		
-		<section class="panel">
-		  <h2>Contact</h2>
-		
-		  <details class="contact">
-		    <summary>Open contact form</summary>
-		    <iframe class="form"
-		      src="https://docs.google.com/forms/d/e/1FAIpQLSdrEGxrdCG2SMNDslkPVChZ215JplKWMx3QE13K4jHWVsRcbw/viewform?embedded=true">
-		    </iframe>
-		  </details>
-		
-		</section>
-		
-		</main>
-		
+		<div class="container">
+			<section>
+				<h2>O mnie</h2>
+				<div class="card">
+					Administrator systemów i programista PHP z ponad 15-letnim doświadczeniem w środowiskach produkcyjnych.
+					Specjalizuję się w projektowaniu, utrzymaniu i optymalizacji infrastruktury IT, systemów webowych oraz usług krytycznych.
+					Pracuję zarówno na poziomie systemów operacyjnych, aplikacji i integracji backendowych, jak również w zakresie serwisu sprzętu komputerowego (hardware), diagnostyki i napraw poważnych awarii oraz odzyskiwania danych po uszkodzeniach systemowych i fizycznych.
+				</div>
+				<div class="grid">
+					<div class="card">
+						<b>System Administration</b>
+						<ul>
+							<li>Linux: Debian, Ubuntu, CentOS, Gentoo</li>
+							<li>Windows Server / Active Directory</li>
+							<li>Administracja serwerami WWW i usługami systemowymi</li>
+							<li>Konfiguracja, utrzymanie i hardening systemów</li>
+							<li>Integracja warstwy sprzętowej i systemowej (diagnostyka hardware/software)</li>
+						</ul>
+					</div>
+					<div class="card">
+						<b>Hardware & Physical Repair</b>
+						<ul>
+							<li>Diagnostyka i naprawa sprzętu komputerowego (PC / laptop)</li>
+							<li>Reanimacja systemów po awariach sprzętowych</li>
+							<li>Wymiana i testowanie podzespołów (RAM, SSD, CPU, PSU)</li>
+							<li>Odzyskiwanie danych z uszkodzonych nośników</li>
+							<li>Analiza awarii: dyski, BIOS/UEFI, boot failure</li>
+							<li>Optymalizacja i modernizacja sprzętu</li>
+						</ul>
+					</div>
+					<div class="card">
+						<b>Networking & Infrastructure</b>
+						<ul>
+							<li>LAN/WAN, konfiguracja i diagnostyka sieci</li>
+							<li>WiFi (WPA/WPA2), DHCP, routing, switching</li>
+							<li>Integracja i rozbudowa infrastruktury lokalnej</li>
+							<li>Konfiguracja UPS, urządzeń sieciowych (router, switch, AP)</li>
+							<li>Administracja i projektowanie środowisk sieciowych</li>
+						</ul>
+					</div>
+					<div class="card">
+						<b>Backend & Web Development</b>
+						<ul>
+							<li>PHP, MySQL, JavaScript, HTML, CSS</li>
+							<li>Bootstrap, jQuery</li>
+							<li>Projektowanie i utrzymanie systemów CMS</li>
+							<li>Aplikacje webowe: ewidencje, statystyki, systemy zarządzania</li>
+							<li>Responsywne strony WWW (desktop / mobile)</li>
+						</ul>
+					</div>
+					<div class="card">
+						<b>Databases & Performance</b>
+						<ul>
+							<li>MySQL – optymalizacja i tuning wydajności</li>
+							<li>Backup / recovery / disaster recovery</li>
+							<li>Analiza i optymalizacja zapytań</li>
+							<li>Diagnostyka problemów wydajnościowych</li>
+						</ul>
+					</div>
+					<div class="card">
+						<b>Email & Server Services</b>
+						<ul>
+							<li>Postfix / Dovecot</li>
+							<li>SMTP / IMAP / POP3</li>
+							<li>Konfiguracja i utrzymanie usług pocztowych</li>
+							<li>Diagnostyka problemów dostarczania poczty</li>
+						</ul>
+					</div>
+					<div class="card">
+						<b>Security & Incident Response</b>
+						<ul>
+							<li>Audyt bezpieczeństwa systemów i aplikacji</li>
+							<li>Analiza powłamaniowa i log analysis</li>
+							<li>Usuwanie malware i incident recovery</li>
+							<li>Odzyskiwanie danych i systemów po awarii</li>
+							<li>Ethical hacking w zakresie odzyskiwania dostępu</li>
+							<li>Full-stack incident response (software + hardware + data recovery)</li>
+						</ul>
+					</div>
+					<div class="card">
+						<b>Engineering & Delivery</b>
+						<ul>
+							<li>Projektowanie i wdrożenia stron WWW</li>
+							<li>Instalacje i migracje serwisów oraz baz danych</li>
+							<li>Wsparcie produkcyjne i utrzymaniowe (support)</li>
+							<li>Dobór i konfiguracja infrastruktury hostingowej</li>
+							<li>Integracje systemów i automatyzacja procesów</li>
+						</ul>
+					</div>
+					<div class="card">
+						<b>Design & Additional Skills</b>
+						<ul>
+							<li>DTP: Photoshop, Illustrator, InDesign, Corel, QuarkXPress</li>
+							<li>Skład publikacji: książki, reklamy, materiały marketingowe</li>
+							<li>AI / LLM: prompt engineering, analiza danych, generowanie treści</li>
+							<li>Praca z narzędziami i systemami produkcyjnymi</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h2>Umiejętności</h2>
+				<div class="grid">
+					<div class="card">
+						<b>Systemy</b>
+						<ul>
+							<li>Linux (Debian, Ubuntu, CentOS)</li>
+							<li>Windows Server</li>
+							<li>Active Directory</li>
+						</ul>
+					</div>
+					<div class="card">
+						<b>Backend</b>
+						<ul>
+							<li>PHP</li>
+							<li>MySQL</li>
+							<li>API / integracje</li>
+						</ul>
+					</div>
+					<div class="card">
+						<b>Security</b>
+						<ul>
+							<li>Audyt systemów</li>
+							<li>Analiza incydentów</li>
+							<li>Hardening serwerów</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h2>Projekty</h2>
+				<div class="grid">
+					<div class="card">
+						<a href="https://nettg.pl" target="_blank">nettg.pl</a>
+					</div>
+					<div class="card">
+						<a href="https://wpr.pl" target="_blank">wpr.pl</a>
+					</div>
+					<div class="card">
+						<a href="https://solidarnosckatowice.pl" target="_blank">solidarnosckatowice.pl</a>
+					</div>
+					<div class="card">
+						<a href="https://energiapress.pl" target="_blank">energiapress.pl</a>
+					</div>
+					<div class="card">
+						<a href="https://wydawnictwo-gospodarcze.pl" target="_blank">wydawnictwo-gospodarcze.pl</a>
+					</div>
+					<div class="card">
+						<a href="https://remiza-pawlowice.com.pl" target="_blank">remiza-pawlowice.com.pl</a>
+					</div>
+					<div class="card">
+						<a href="https://shorestudio.pl" target="_blank">shorestudio.pl</a>
+					</div>
+					<div class="card">
+						<a href="https://bartlomiejszopa.com" target="_blank">bartlomiejszopa.com</a>
+					</div>
+				</div>	
+			</section>
+			<section class="contact-section">
+			  <h2>Kontakt</h2>
+			
+			  <p class="contact-subtitle">
+			    Napisz wiadomość — odpowiadam zazwyczaj tego samego dnia.
+			  </p>
+			
+			  <details class="contact-card">
+			    <summary>
+			      Otwórz formularz kontaktowy
+			      <span class="arrow">›</span>
+			    </summary>
+			
+			    <div class="contact-content">
+			
+			      <!-- honeypot anti-spam -->
+			      <div class="honeypot">
+			        <input type="text" name="website" tabindex="-1" autocomplete="off">
+			      </div>
+			
+			      <div class="form-wrapper">
+			
+			        <div id="loader">
+			          Ładowanie formularza…
+			        </div>
+			
+			        <iframe
+			          id="gform"
+			          src="https://docs.google.com/forms/d/e/1FAIpQLSdrEGxrdCG2SMNDslkPVChZ215JplKWMx3QE13K4jHWVsRcbw/viewform?embedded=true"
+			          loading="lazy"
+			          frameborder="0"
+			          scrolling="no"
+			          onload="document.querySelector('.form-wrapper').classList.add('loaded'); document.getElementById('loader').style.display='none';"
+			        ></iframe>
+			
+			      </div>
+			    </div>
+			  </details>
+			</section>
+		</div>
 		<footer>
-		  © 2026 Przemysław Piersiak
+			© 2026 Przemysław Piersiak
 		</footer>
 	</body>
 </html>
