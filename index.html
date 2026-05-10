@@ -28,19 +28,29 @@
 		  gtag('config', 'G-ESF927GTZG');
 		</script>
 		<style>
-			body{
+body{
   margin:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  background:#0b0f17;
-  color:#e5e7eb;
-  line-height:1.6;
+  font-family: system-ui;
+  background:#05070d;
+  color:#e6edf3;
+}
+
+/* TOP BAR */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  padding:10px 20px;
+  background:#0b1220;
+  font-size:12px;
+  color:#8b98a5;
+  border-bottom:1px solid #111827;
 }
 
 /* HERO */
 .hero{
-  max-width:1000px;
-  margin:0 auto;
-  padding:80px 20px 40px;
+  max-width:1100px;
+  margin:auto;
+  padding:50px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -48,178 +58,176 @@
 
 .hero h1{
   margin:0;
-  font-size:42px;
+  font-size:40px;
 }
 
 .subtitle{
-  color:#9ca3af;
-  margin-top:8px;
+  color:#8b98a5;
 }
 
 .avatar{
   width:110px;
   height:110px;
   border-radius:50%;
-  border:1px solid rgba(255,255,255,0.08);
+  border:1px solid #1f2937;
 }
 
-/* LAYOUT */
-.container{
-  max-width:1000px;
+/* GRID LAYOUT */
+.grid-layout{
+  max-width:1100px;
   margin:auto;
-  padding:0 20px 80px;
+  padding:20px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
 }
 
 .panel{
-  margin-bottom:50px;
+  background:#0b1220;
+  border:1px solid #111827;
+  border-radius:14px;
+  padding:16px;
 }
 
-.panel h2{
-  font-size:16px;
-  letter-spacing:0.5px;
-  border-left:3px solid #3b82f6;
-  padding-left:10px;
-  margin-bottom:15px;
+.panel.wide{
+  grid-column:span 2;
 }
 
-/* CARDS GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:12px;
+h2{
+  font-size:13px;
+  color:#00d4ff;
+  letter-spacing:1px;
 }
 
-.card{
-  background:#111827;
-  padding:14px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,0.06);
+/* STATS */
+.stats{
+  display:flex;
+  gap:10px;
 }
 
-/* PROJECT TILES */
-.tile{
-  background:#111827;
-  padding:14px;
-  border-radius:12px;
+.stat{
+  flex:1;
+  padding:10px;
+  background:#05070d;
+  border:1px solid #111827;
+  border-radius:10px;
+  text-align:center;
+  font-size:12px;
+}
+
+/* CHIPS */
+.chips span{
+  display:inline-block;
+  padding:6px 10px;
+  margin:4px;
+  background:#05070d;
+  border:1px solid #1f2937;
+  border-radius:999px;
+  font-size:12px;
+  color:#7c3aed;
+}
+
+/* PROJECTS */
+.projects a{
+  display:block;
+  padding:8px;
+  margin:6px 0;
+  background:#05070d;
+  border-radius:10px;
   text-decoration:none;
-  color:#60a5fa;
-  border:1px solid rgba(255,255,255,0.06);
+  color:#00d4ff;
 }
 
-/* LIST */
-.list{
-  color:#9ca3af;
-  padding-left:18px;
-}
-
-/* CONTACT */
-.contact summary{
-  cursor:pointer;
-  font-weight:600;
-}
-
+/* FORM */
 .form{
   width:100%;
-  height:700px;
+  height:600px;
   border:0;
-  margin-top:10px;
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  color:#6b7280;
-  padding:40px;
-  font-size:13px;
 }
 
 /* MOBILE */
 @media(max-width:768px){
+  .grid-layout{
+    grid-template-columns:1fr;
+  }
+  .panel.wide{
+    grid-column:auto;
+  }
   .hero{
     flex-direction:column;
     text-align:center;
     gap:20px;
   }
-  .hero h1{
-    font-size:30px;
-  }
 }
 		</style>
 	</head>
 	<body>
-			<header class="hero">
-		  <div class="hero-left">
-		    <h1>Przemysław Piersiak</h1>
-		    <p class="subtitle">
-		      IT Engineer | Infrastructure • Linux • Windows • Security • Backend Systems
-		    </p>
-		  </div>
-		
-		  <img src="user-150x150.jpg" class="avatar">
-		</header>
-		
-		<main class="container">
-		
-		<section class="panel">
-		  <h2>Profile</h2>
-		  <p>
-		    Administrator systemów i programista PHP z ponad 15-letnim doświadczeniem w środowiskach produkcyjnych.
-		    Specjalizacja: infrastruktura IT, systemy webowe, hardware, incident response i recovery.
-		  </p>
-		</section>
-		
-		<section class="panel">
-		  <h2>Core Systems</h2>
-		
-		  <div class="grid">
-		    <div class="card">Linux / Windows Server / AD</div>
-		    <div class="card">Networking / LAN / WAN / VPN</div>
-		    <div class="card">PHP / MySQL / Backend systems</div>
-		    <div class="card">Security / Incident response</div>
-		    <div class="card">Hardware diagnostics / recovery</div>
-		    <div class="card">Performance / optimization</div>
-		  </div>
-		</section>
-		
-		<section class="panel">
-		  <h2>Engineering Scope</h2>
-		  <ul class="list">
-		    <li>System administration & infrastructure design</li>
-		    <li>Production environment maintenance</li>
-		    <li>Failure analysis & recovery</li>
-		    <li>Backend system development</li>
-		    <li>Security auditing & remediation</li>
-		    <li>Hardware-level diagnostics</li>
-		  </ul>
-		</section>
-		
-		<section class="panel">
-		  <h2>Projects</h2>
-		
-		  <div class="grid">
-		    <a class="tile" href="https://nettg.pl">nettg.pl</a>
-		    <a class="tile" href="https://wpr.pl">wpr.pl</a>
-		    <a class="tile" href="https://energiapress.pl">energiapress.pl</a>
-		    <a class="tile" href="https://solidarnosckatowice.pl">solidarnosckatowice.pl</a>
-		  </div>
-		</section>
-		
-		<section class="panel">
-		  <h2>Contact</h2>
-		
-		  <details class="contact">
-		    <summary>Open contact form</summary>
-		    <iframe class="form"
-		      src="https://docs.google.com/forms/d/e/1FAIpQLSdrEGxrdCG2SMNDslkPVChZ215JplKWMx3QE13K4jHWVsRcbw/viewform?embedded=true">
-		    </iframe>
-		  </details>
-		
-		</section>
-		
-		</main>
-		
-		<footer>
-		  © 2026 Przemysław Piersiak
-		</footer>
-	</body>
+
+<div class="topbar">
+  <span>SYS • ONLINE</span>
+  <span>INFRA ENGINEER PROFILE</span>
+  <span>STATUS: ACTIVE</span>
+</div>
+
+<header class="hero">
+  <div>
+    <h1>Przemysław Piersiak</h1>
+    <p class="subtitle">Infrastructure • Linux • Security • Backend Systems</p>
+  </div>
+  <img src="user-150x150.jpg" class="avatar">
+</header>
+
+<main class="grid-layout">
+
+<section class="panel wide">
+  <h2>System Overview</h2>
+  <div class="stats">
+    <div class="stat">15+ Years</div>
+    <div class="stat">Production Systems</div>
+    <div class="stat">Linux / Windows / Backend</div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Core Systems</h2>
+  <ul>
+    <li>Linux / Windows Server</li>
+    <li>Networking / Infrastructure</li>
+    <li>PHP / MySQL / Backend</li>
+    <li>Security / Incident Response</li>
+  </ul>
+</section>
+
+<section class="panel">
+  <h2>System Map</h2>
+  <div class="chips">
+    <span>Linux</span>
+    <span>Windows</span>
+    <span>Networking</span>
+    <span>Security</span>
+    <span>Recovery</span>
+    <span>Backend</span>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Projects</h2>
+  <div class="projects">
+    <a href="https://nettg.pl">nettg.pl</a>
+    <a href="https://wpr.pl">wpr.pl</a>
+    <a href="https://energiapress.pl">energiapress.pl</a>
+    <a href="https://solidarnosckatowice.pl">solidarnosckatowice.pl</a>
+  </div>
+</section>
+
+<section class="panel wide">
+  <h2>Contact Interface</h2>
+  <iframe class="form"
+    src="https://docs.google.com/forms/d/e/1FAIpQLSdrEGxrdCG2SMNDslkPVChZ215JplKWMx3QE13K4jHWVsRcbw/viewform?embedded=true">
+  </iframe>
+</section>
+
+</main>
+
+</body>
 </html>
