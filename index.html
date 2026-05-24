@@ -204,6 +204,14 @@
 		
 		});
 		</script>
+		<script>
+		window.addEventListener("load", () => {
+		  setTimeout(() => {
+		    document.body.classList.remove("loading");
+		    document.body.classList.add("ready");
+		  }, 200);
+		});	
+		</script>	
 		<style>
 			body{
 			  margin:0;
@@ -835,24 +843,35 @@
 			  transform: translateY(0);
 			}
 
-			.panel {
-			  background: linear-gradient(
-			    90deg,
-			    rgba(255,255,255,0.02),
-			    rgba(255,255,255,0.05),
-			    rgba(255,255,255,0.02)
-			  );
-			  background-size: 200% 100%;
-			  animation: shimmer 1.2s infinite;
+			body.loading .grid3 {
+			  opacity: 0;
+			  filter: blur(6px);
+			}
+
+			body.ready .left {
+			  animation: fadeInUp 0.4s ease forwards;
 			}
 			
-			@keyframes shimmer {
-			  0% { background-position: 200% 0; }
-			  100% { background-position: -200% 0; }
+			body.ready .center {
+			  animation: fadeInUp 0.4s ease forwards;
 			}
+			
+			body.ready .right {
+			  animation: fadeInUp 0.4s ease forwards;
+			}
+
+			body.dark {
+			  --bg: #070a12;
+			}
+			
+			body.light {
+			  --bg: #f5f7fb;
+			}
+
+			
 		</style>
 	</head>
-	<body class="dark">
+	<body class="dark loading">
 		<div class="boot-overlay" id="bootOverlay" aria-hidden="true">
 		  <div class="boot-shell">
 		    <div class="boot-top">
