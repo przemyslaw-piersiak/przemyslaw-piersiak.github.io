@@ -190,15 +190,6 @@
 		
 		});
 		</script>	
-		
-		<script>
-		window.addEventListener("load", () => {
-		  setTimeout(() => {
-		    document.body.classList.remove("loading");
-		    document.body.classList.add("ready");
-		  }, 200);
-		});	
-		</script>	
 		<style>
 			body{
 			  margin:0;
@@ -638,23 +629,6 @@
 			  transform: translateY(0);
 			}
 
-			body.loading .grid3 {
-			  opacity: 0;
-			  filter: blur(6px);
-			}
-
-			body.ready .left {
-			  animation: fadeInUp 0.4s ease forwards;
-			}
-			
-			body.ready .center {
-			  animation: fadeInUp 0.4s ease forwards;
-			}
-			
-			body.ready .right {
-			  animation: fadeInUp 0.4s ease forwards;
-			}
-
 			body.dark {
 			  --bg: #070a12;
 			}
@@ -666,7 +640,7 @@
 			
 		</style>
 	</head>
-	<body class="dark loading">
+	<body class="dark">
 		
 		<div class="topbar">
 			<div class="brand">https://przemyslaw-piersiak.github.io</div>
