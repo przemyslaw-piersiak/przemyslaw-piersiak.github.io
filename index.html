@@ -4,8 +4,6 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<title>Przemysław Piersiak | Hardware & Software IT Services | System Administration & Infrastructure Support</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="robots" content="index, follow">
 		<link rel="canonical" href="https://przemyslaw-piersiak.github.io/" />
 		<meta name="description" content="Administrator systemów i programista z ponad 15-letnim doświadczeniem w środowiskach produkcyjnych. Linux, Windows Server, sieci, bezpieczeństwo IT, MySQL oraz tworzenie i utrzymanie systemów webowych i infrastruktury serwerowej." />
@@ -192,34 +190,7 @@
 		
 		});
 		</script>	
-		<script>
-		  window.addEventListener("load", () => {
-
-		  const overlay = document.getElementById("bootOverlay");
-		  if (!overlay) return;
 		
-		  const MIN_TIME = 900; // krócej = bardziej responsywnie
-		
-		  const start = performance.now();
-		
-		  const hide = () => {
-		    overlay.classList.add("hide");
-		
-		    setTimeout(() => {
-		      overlay.remove();
-		    }, 400);
-		  };
-		
-		  const elapsed = performance.now() - start;
-		
-		  if (elapsed >= MIN_TIME) {
-		    hide();
-		  } else {
-		    setTimeout(hide, MIN_TIME - elapsed);
-		  }
-		
-		});
-		</script>
 		<script>
 		window.addEventListener("load", () => {
 		  setTimeout(() => {
@@ -368,17 +339,6 @@
 			  padding-left:10px;
 			}
 			
-			/* SVG overlay */
-			.graph-lines{
-			  position:absolute;
-			  left:0;
-			  top:0;
-			  width:100%;
-			  height:100%;
-			  z-index:0;
-			  opacity:0.25;
-			}
-			
 			/* nodes nad liniami */
 			.node{
 			  position:relative;
@@ -495,7 +455,6 @@
 			  font-family:monospace;
 			}
 			
-			.hidden{ display:none; }
 			
 			*{
 			  box-sizing:border-box;
@@ -561,187 +520,7 @@
 			  text-decoration:none;
 			  transition:0.2s ease;
 			}
-			/* =========================
-			   BOOT LOADER
-			========================= */
 			
-			.boot-overlay{
-			  position:fixed;
-			  inset:0;
-			
-			  display:flex;
-			  align-items:center;
-			  justify-content:center;
-			
-			  z-index:99999;
-			
-			  background:rgba(7,10,18,.45);
-			
-			  backdrop-filter:blur(14px);
-			  -webkit-backdrop-filter:blur(14px);
-			
-			  transition:
-			    opacity .45s ease,
-			    visibility .45s ease;
-			}
-			
-			.boot-overlay.hide{
-			  opacity:0;
-			  visibility:hidden;
-			}
-			
-			.boot-shell{
-			  min-width:340px;
-			
-			  padding:34px;
-			
-			  border-radius:24px;
-			
-			  background:rgba(255,255,255,.04);
-			
-			  border:1px solid rgba(255,255,255,.08);
-			
-			  box-shadow:
-			    0 25px 80px rgba(0,0,0,.45),
-			    inset 0 0 20px rgba(255,255,255,.02);
-			}
-			
-			.boot-top{
-			  display:flex;
-			  align-items:center;
-			  justify-content:space-between;
-			
-			  margin-bottom:28px;
-			}
-			
-			.boot-status{
-			  font-size:11px;
-			  letter-spacing:.14em;
-			  text-transform:uppercase;
-			
-			  color:rgba(230,234,242,.55);
-			}
-			
-			.boot-dot{
-			  width:10px;
-			  height:10px;
-			
-			  border-radius:50%;
-			
-			  background:var(--accent);
-			
-			  box-shadow:
-			    0 0 10px rgba(91,140,255,.65);
-			
-			  animation:blink 1.2s infinite;
-			}
-			
-			.loader-line{
-			  position:relative;
-			
-			  height:2px;
-			
-			  background:
-			    linear-gradient(
-			      90deg,
-			      transparent,
-			      rgba(91,140,255,.45),
-			      transparent
-			    );
-			
-			  margin:30px 0;
-			}
-			
-			.infra-loader{
-			  position:absolute;
-			
-			  left:50%;
-			  top:50%;
-			
-			  transform:translate(-50%, -50%);
-			
-			  display:flex;
-			  gap:24px;
-			}
-			
-			.infra-loader span{
-			  width:16px;
-			  height:16px;
-			
-			  border-radius:50%;
-			
-			  background:var(--accent);
-			
-			  box-shadow:
-			    0 0 12px rgba(91,140,255,.45),
-			    0 0 28px rgba(91,140,255,.18);
-			
-			  animation:infraPulse 1.2s infinite ease-in-out;
-			}
-			
-			.infra-loader span:nth-child(2){
-			  animation-delay:.15s;
-			}
-			
-			.infra-loader span:nth-child(3){
-			  animation-delay:.3s;
-			}
-			
-			.boot-log{
-			  margin-top:30px;
-			
-			  font-family:monospace;
-			  font-size:12px;
-			
-			  color:rgba(230,234,242,.7);
-			
-			  line-height:1.8;
-			}
-			
-			.boot-log div{
-			  opacity:0;
-			
-			  animation:logFade .5s forwards;
-			}
-			
-			.boot-log div:nth-child(1){ animation-delay:.2s; }
-			.boot-log div:nth-child(2){ animation-delay:.6s; }
-			.boot-log div:nth-child(3){ animation-delay:1s; }
-			.boot-log div:nth-child(4){ animation-delay:1.4s; }
-			
-			@keyframes infraPulse{
-			
-			  0%,80%,100%{
-			    transform:scale(.65);
-			    opacity:.35;
-			  }
-			
-			  40%{
-			    transform:scale(1.2);
-			    opacity:1;
-			  }
-			
-			}
-			
-			@keyframes blink{
-			
-			  0%,100%{
-			    opacity:.3;
-			  }
-			
-			  50%{
-			    opacity:1;
-			  }
-			
-			}
-			
-			@keyframes logFade{
-			
-			  to{
-			    opacity:1;
-			  }
-			
-			}
 			/* =========================
 			   MOBILE / TABLET
 			========================= */
@@ -888,31 +667,7 @@
 		</style>
 	</head>
 	<body class="dark loading">
-		<div class="boot-overlay" id="bootOverlay" aria-hidden="true">
-		  <div class="boot-shell">
-		    <div class="boot-top">
-		      <div class="boot-status">
-		        infrastructure boot sequence
-		      </div>
-		      <div class="boot-dot"></div>
-		    </div>
-		    <div class="loader-line">
-		      <div class="infra-loader">
-		        <span></span>
-		        <span></span>
-		        <span></span>
-		      </div>
-		    </div>
-		    <div class="boot-log">
-		      <div>[ OK ] loading interface modules</div>
-		      <div>[ OK ] mounting node graph</div>
-		      <div>[ OK ] initializing cli subsystem</div>
-		      <div>[ OK ] starting infrastructure layer</div>
-		    </div>
 		
-		  </div>
-		
-		</div>
 		<div class="topbar">
 			<div class="brand">https://przemyslaw-piersiak.github.io</div>
 			<div class="switch">
@@ -930,7 +685,7 @@
 			</div>
 		</div>
 		
-		<d id="uiMode" class="grid3">
+		<div id="uiMode" class="grid3">
 		
 		<aside class="left">
 			<img src="https://przemyslaw-piersiak.github.io/user-150x150.jpg" class="avatar">
@@ -1052,7 +807,7 @@
 				<h2>Projekty</h2>
 				<div class="grid">
 					<a class="card single-panel link-card" href="https://nettg.pl" target="_blank">nettg.pl</a>
-					<a class="card single-panel link-card" href="https://>wpr.pl" target="_blank">wpr.pl</a>
+					<a class="card single-panel link-card" href="https://wpr.pl" target="_blank">wpr.pl</a>
 					<a class="card single-panel link-card" href="https://solidarnosckatowice.pl" target="_blank">solidarnosckatowice.pl</a>
 					<a class="card single-panel link-card" href="https://energiapress.pl" target="_blank">energiapress.pl</a>
 					<a class="card single-panel link-card" href="https://wydawnictwo-gospodarcze.pl" target="_blank">wydawnictwo-gospodarcze.pl</a>
