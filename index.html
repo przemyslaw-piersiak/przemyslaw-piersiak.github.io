@@ -30,15 +30,6 @@
 		  gtag('config', 'G-ESF927GTZG');
 		</script>
 		<script>
-		function updateThemeColor(isLight) {
-		  const color = isLight ? "#f5f7fb" : "#070a12";
-		
-		  document.querySelector('meta[name="theme-color"]')
-		    .setAttribute("content", color);
-		}
-		</script>
-		
-		<script>
 		document.addEventListener("DOMContentLoaded", () => {
 		
 		  // =========================
@@ -88,33 +79,47 @@
 		  // =========================
 		  // THEME SYSTEM
 		  // =========================
-		  function setTheme(mode) {
+		  const THEME_KEY = "theme";
+
+			function setTheme(mode) {
 			  const isLight = mode === "light";
 			
+			  // body state
 			  document.body.classList.remove("light", "dark");
 			  document.body.classList.add(isLight ? "light" : "dark");
 			
-			  localStorage.setItem("theme", mode);
+			  // persist
+			  localStorage.setItem(THEME_KEY, mode);
 			
+			  // UI label
 			  if (themeBtn) {
 			    themeBtn.textContent = isLight ? "☀ light" : "🌙 dark";
 			  }
+			
+			  // mobile browser UI bar color
+			  const meta = document.querySelector('meta[name="theme-color"]');
+			  if (meta) {
+			    meta.setAttribute("content", isLight ? "#f5f7fb" : "#070a12");
+			  }
 			}
-		
-		  	(function initTheme() {
-			  const saved = localStorage.getItem("theme");
+			
+			// init theme (boot)
+			(function initTheme() {
+			  const saved = localStorage.getItem(THEME_KEY);
 			
 			  if (saved === "light" || saved === "dark") {
 			    setTheme(saved);
 			    return;
 			  }
 			
+			  // fallback: dark mode default
 			  setTheme("dark");
 			})();
 			
-			themeBtn.addEventListener("click", () => {
-			  const current = document.body.classList.contains("light");
-			  setTheme(current ? "dark" : "light");
+			// toggle button
+			themeBtn?.addEventListener("click", () => {
+			  const isLight = document.body.classList.contains("light");
+			  setTheme(isLight ? "dark" : "light");
 			});
 		
 		  // =========================
