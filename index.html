@@ -769,7 +769,23 @@
 			
 			}
 			iframe {
+			  transition: filter 0.25s ease, transform 0.2s ease;
+			}
+			iframe:hover {
+			  transform: translateY(-1px);
+			}
+			iframe {
+			  transition: filter 0.3s ease;
+			}
+			
+			/* DARK MODE */
+			body.dark iframe {
 			  filter: invert(0.92) hue-rotate(180deg);
+			}
+			
+			/* LIGHT MODE */
+			body.light iframe {
+			  filter: none;
 			}
 		</style>
 	</head>
