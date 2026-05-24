@@ -86,22 +86,18 @@
 		    themeBtn.textContent = isLight ? "☀ light" : "🌙 dark";
 		  }
 		
-		  (function initTheme() {
-		    const saved = localStorage.getItem("theme");
+		(function initTheme() {
+		  const saved = localStorage.getItem("theme");
 		
-		    if (saved) {
-		      setTheme(saved);
-		      return;
-		    }
+		  if (saved) {
+		    setTheme(saved);
+		    return;
+		  }
 		
-		    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-		    setTheme(systemDark ? "dark" : "light");
-		  })();
+		  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 		
-		  themeBtn.addEventListener("click", () => {
-		    const isLight = document.body.classList.contains("light");
-		    setTheme(isLight ? "dark" : "light");
-		  });
+		  setTheme(prefersDark ? "dark" : "dark");
+		})();
 		
 		  // =========================
 		  // NODE GRAPH
