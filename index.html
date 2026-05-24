@@ -167,6 +167,36 @@ window.addEventListener("load", () => {
 
 });
 </script>
+<script>
+	const loader = document.getElementById("loader");
+const loaderPercent = document.getElementById("loaderPercent");
+
+let progress = 0;
+
+// synthetic progress (nie fake, tylko UX simulation)
+const interval = setInterval(() => {
+  // szybki start, wolniejsze domykanie (naturalny feeling)
+  if (progress < 70) progress += Math.random() * 8;
+  else if (progress < 90) progress += Math.random() * 3;
+  else progress += Math.random() * 1;
+
+  progress = Math.min(100, progress | 0);
+  loaderPercent.textContent = progress + "%";
+
+  if (progress >= 100) {
+    clearInterval(interval);
+
+    setTimeout(() => {
+      loader.classList.add("hidden");
+    }, 200);
+  }
+}, 40);
+
+// fallback safety (gdyby coś się przywiesiło)
+window.addEventListener("load", () => {
+  progress = 100;
+});
+</script>
 		<style>
 			body{
 			  margin:0;
@@ -609,47 +639,56 @@ window.addEventListener("load", () => {
       }
       
       #loader{
-        position:fixed;
-        inset:0;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        background:rgba(0,0,0,0.6);
-        z-index:9999;
-        transition:opacity .3s ease, visibility .3s ease;
-      }
-
-      #loader.hidden{
-        opacity:0;
-        visibility:hidden;
-      }
-
-      .spinner{
-        width:42px;
-        height:42px;
-        border:3px solid rgba(255,255,255,0.15);
-        border-top-color: var(--accent);
-        border-radius:50%;
-        animation:spin .8s linear infinite;
-      }
-
-      @keyframes spin{
-        to { transform:rotate(360deg); }
-      }
-
-      /* light tweak */
-      body.light .spinner{
-        border:3px solid rgba(0,0,0,0.1);
-        border-top-color: var(--accent);
-      }
+		  position:fixed;
+		  inset:0;
+		  display:flex;
+		  align-items:center;
+		  justify-content:center;
+		  background:rgba(0,0,0,0.6);
+		  z-index:9999;
+		}
+		
+		body.light #loader{
+		  background:rgba(245,247,251,0.75);
+		}
+		
+		.loader-box{
+		  display:flex;
+		  flex-direction:column;
+		  align-items:center;
+		  gap:10px;
+		}
+		
+		.spinner{
+		  width:42px;
+		  height:42px;
+		  border:3px solid rgba(255,255,255,0.15);
+		  border-top-color: var(--accent);
+		  border-radius:50%;
+		  animation:spin .8s linear infinite;
+		}
+		
+		@keyframes spin{
+		  to { transform:rotate(360deg); }
+		}
+		
+		#loaderPercent{
+		  font-family: monospace;
+		  font-size: 14px;
+		  color: var(--text);
+		  opacity: 0.9;
+		}
 			
 		</style>
 	</head>
 	<body class="dark">
 		
     <div id="loader">
-      <div class="spinner"></div>
-    </div>
+	  <div class="loader-box">
+	    <div class="spinner"></div>
+	    <div id="loaderPercent">0%</div>
+	  </div>
+	</div>
     
 		<div class="topbar">
 			<div class="brand">https://przemyslaw-piersiak.github.io</div>
