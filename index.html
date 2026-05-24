@@ -834,19 +834,22 @@
 			  opacity: 1;
 			  transform: translateY(0);
 			}
-			.center > *,
-			.left > *,
-			.right > * {
-			  opacity: 0;
-			  animation: fadeInUp 0.4s ease forwards;
+
+			.panel {
+			  background: linear-gradient(
+			    90deg,
+			    rgba(255,255,255,0.02),
+			    rgba(255,255,255,0.05),
+			    rgba(255,255,255,0.02)
+			  );
+			  background-size: 200% 100%;
+			  animation: shimmer 1.2s infinite;
 			}
-			.left > *:nth-child(1),
-			.center > *:nth-child(1),
-			.right > *:nth-child(1) { animation-delay: 0.05s; }
 			
-			.left > *:nth-child(2),
-			.center > *:nth-child(2),
-			.right > *:nth-child(2) { animation-delay: 0.10s; }
+			@keyframes shimmer {
+			  0% { background-position: 200% 0; }
+			  100% { background-position: -200% 0; }
+			}
 		</style>
 	</head>
 	<body class="dark">
