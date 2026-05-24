@@ -27,431 +27,638 @@
 		
 		  gtag('config', 'G-ESF927GTZG');
 		</script>
+		<script>
+			const uiBtn = document.getElementById("uiBtn");
+			const cliBtn = document.getElementById("cliBtn");
+			const uiMode = document.getElementById("uiMode");
+			
+			const themeBtn = document.getElementById("themeBtn");
+			
+			const formToggle = document.getElementById("formToggle");
+			const formWrap = document.getElementById("formWrap");
+			
+			const nodes = document.querySelectorAll(".node");
+			
+			uiBtn.onclick = () => {
+			  uiMode.style.display = "grid";
+			};
+			
+			cliBtn.onclick = () => {
+			  uiMode.style.display = "none";
+			};
+			
+			
+			nodes.forEach(node => {
+			  node.onclick = () => {
+			    nodes.forEach(n => n.classList.remove("focus"));
+			    node.classList.add("focus");
+			  };
+			
+			  node.onmouseenter = () => {
+			    node.style.transform = "scale(1.03)";
+			  };
+			
+			  node.onmouseleave = () => {
+			    node.style.transform = "scale(1)";
+			  };
+			});
+			
+			
+			
+			
+			formToggle.onclick = () => {
+			  formWrap.classList.toggle("hidden");
+			};
+			
+			function setTheme(mode) {
+			  const isLight = mode === "light";
+			
+			  document.body.classList.toggle("light", isLight);
+			
+			  localStorage.setItem("theme", mode);
+			
+			  themeBtn.textContent = isLight ? "☀ light" : "🌙 dark";
+			}
+			
+			(function initTheme() {
+			  const saved = localStorage.getItem("theme");
+			
+			  if (saved) {
+			    setTheme(saved);
+			    return;
+			  }
+			
+			  const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+			  setTheme(systemDark ? "dark" : "light");
+			})();
+			
+			themeBtn.onclick = () => {
+			  const isLight = document.body.classList.contains("light");
+			  setTheme(isLight ? "dark" : "light");
+			};
+			
+			const cliMode = document.getElementById("cliMode");
+			
+			uiBtn.onclick = () => {
+			  uiMode.style.display = "grid";
+			  cliMode.classList.add("hidden");
+			
+			  uiBtn.classList.add("active");
+			  cliBtn.classList.remove("active");
+			};
+			
+			cliBtn.onclick = () => {
+			  uiMode.style.display = "none";
+			  cliMode.classList.remove("hidden");
+			
+			  cliBtn.classList.add("active");
+			  uiBtn.classList.remove("active");
+			};
+			
+			const cliInput = document.getElementById("cliInput");
+			const cliOutput = document.getElementById("cliOutput");
+			
+			cliInput.addEventListener("keydown", (e) => {
+			  if(e.key !== "Enter") return;
+			
+			  const cmd = cliInput.value.trim();
+			  cliInput.value = "";
+			
+			  cliOutput.innerHTML += `\n> ${cmd}`;
+			
+			  
+			  if(cmd === "help"){
+			    cliOutput.innerHTML += "\ncommands: help, infra, backend, security";
+			  }
+			
+			  if(cmd === "infra"){
+			    cliOutput.innerHTML += "\nINFRA: Linux, Windows Server, networking, uptime systems";
+			  }
+			
+			  cliOutput.scrollTop = cliOutput.scrollHeight;
+			});
+		</script>
 		<style>
-			body {
-			  margin: 0;
-			  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-			  background: #0b0f17;
-			  color: #e6e6e6;
-			  line-height: 1.6;
+			body{
+			  margin:0;
+			  font-family:system-ui;
+			  background:#070a12;
+			  color:#e6eaf2;
+			  line-height:1.6;
 			}
-		
-			header {
-			  padding: 0;
-			}
-			
-			.hero {
-			  display: flex;
-			  justify-content: center;  
-			  align-items: center;
-			  gap: 28px;
-			  margin: 0 auto;           
-			
-			  padding: 80px 20px;
-			  background: linear-gradient(135deg, #111827, #0b0f17);
-			  text-align: left;
-			}
-			
-			.hero-text {
-			  display: flex;
-			  flex-direction: column;
-			}
-			
-			.hero-text h1 {
-			  font-size: 42px;
-			  margin: 0;
-			}
-			
-			.subtitle {
-			  color: #9ca3af;
-			  font-size: 18px;
-			  margin-top: 6px;
-			}
-			
-			.avatar-right {
-			  width: 110px;
-			  height: 110px;
-			  border-radius: 50%;
-			  object-fit: cover;
-			  flex-shrink: 0;
-			  border: 2px solid #1f2937;
-			  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-			}
-			
-			.container {
-			  max-width: 1000px;
-			  margin: auto;
-			  padding: 40px 20px;
-			}
-			
-			section {
-			  margin-bottom: 60px;
-			}
-			
-			h2 {
-			  border-left: 4px solid #3b82f6;
-			  padding-left: 12px;
-			  margin-bottom: 20px;
-			}
-			
-			.card {
-			  background: #111827;
-			  padding: 20px;
-			  border-radius: 12px;
-			  margin-bottom: 15px;
-			}
-			
-			.grid {
-			  display: grid;
-			  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-			  gap: 15px;
-			}
-			
-			a {
-			  color: #60a5fa;
-			  text-decoration: none;
-			}
-			
-			footer {
-			  text-align: center;
-			  padding: 40px;
-			  color: #6b7280;
-			  font-size: 14px;
-			}
-			
-			.contact-section {
-			  margin-top: 40px;
-			}
-			
-			.contact-subtitle {
-			  color: #9ca3af;
-			  margin-bottom: 16px;
-			}
-			
-			.contact-card {
-			  background: #111827;
-			  border-radius: 14px;
-			  padding: 14px 18px;
-			  overflow: hidden;
-			  transition: all 0.25s ease;
-			}
-			
-			.contact-card summary {
+			button {
 			  cursor: pointer;
-			  list-style: none;
-			  font-weight: 600;
-			  display: flex;
-			  justify-content: space-between;
-			  align-items: center;
-			  color: #e5e7eb;
+			}
+			.brand { 
+			  font-weight: bold;
+			  padding-left:10px;
+			  display:flex;
+			  align-items:center;
+			  justify-content:center;
 			}
 			
-			.contact-card summary::-webkit-details-marker {
-			  display: none;
+			.topbar{
+			  display:flex;
+			  justify-content:space-between;
+			  padding:10px;
+			  background:#0b1020;
+			  border-bottom:1px solid #1b2440;
 			}
 			
-			.arrow {
-			  transition: transform 0.3s ease;
+			.switch button{
+			  background:#111a2a;
+			  border:1px solid #2a3555;
+			  color:#9fb3c8;
+			  padding:6px 10px;
 			}
 			
-			.contact-card[open] {
-			  background: #0f172a;
-			  transform: scale(1.01);
+			.switch .active{
+			  background:#5b8cff;
+			  color:white;
 			}
 			
-			.contact-card[open] .arrow {
-			  transform: rotate(90deg);
+			.grid3{
+			  display:grid;
+			  grid-template-columns:260px 1fr 260px;
+			  gap:12px;
+			  padding:12px;
 			}
 			
-			.contact-content {
-			  margin-top: 16px;
-			  animation: fadeIn 0.3s ease;
+			.left,.center,.right{
+			  background:rgba(255,255,255,0.03);
+			  border:1px solid rgba(255,255,255,0.08);
+			  border-radius:14px;
+			  padding:12px;
 			}
 			
-			@keyframes fadeIn {
-			  from { opacity: 0; transform: translateY(-6px); }
-			  to   { opacity: 1; transform: translateY(0); }
+			.avatar{
+			  width:80px;
+			  height:80px;
+			  border-radius:50%;
+			
+			  display:block;
+			  margin:0 auto;
 			}
 			
-			.honeypot {
-			  position: absolute;
-			  left: -9999px;
+			.chips span{
+			  display:inline-block;
+			  padding:3px 6px;
+			  margin:2px;
+			  background:#111a2a;
+			  font-size:11px;
 			}
 			
-			.form-wrapper {
-			  width: 100%;
-			  height: 850px;
-			  border-radius: 12px;
-			  overflow: hidden;
-			  position: relative;
-			  background: #111827;
+			.card{
+			  background:#111a2a;
+			  padding:10px;
+			  margin:6px 0;
+			  border-radius:10px;
 			}
 			
-			#loader {
-			  position: absolute;
-			  inset: 0;
-			  display: flex;
-			  justify-content: center;
-			  align-items: center;
-			  background: #111827;
-			  color: #9ca3af;
-			  font-size: 14px;
+			.single-panel .card{
+			  background:transparent;
+			  border:0;
+			  box-shadow:none;
+			  padding:8px 0;
 			}
 			
-			.form-wrapper iframe {
-			  width: 100%;
-			  height: 850px;
-			  border: 0;
-			  display: block;
-			  opacity: 0;
-			  transition: opacity 0.35s ease;
+			.single-panel .card{
+			  color:var(--text);
 			}
 			
-			.form-wrapper.loaded iframe {
-			  opacity: 1;
+			.grid{
+			  display:grid;
+			  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+			  gap:10px;
 			}
 			
-			@media (max-width: 768px) {
-			  .hero {
-			    flex-direction: column;
-			    text-align: center;
-			  }
-			
-			  .hero-text h1 {
-			    font-size: 28px;
-			  }
-			
-			  .form-wrapper {
-			    height: 980px;
-			  }
-			
-			  .form-wrapper iframe {
-			    height: 980px;
-			  }
+			h2,h3{
+			  border-left:3px solid #5b8cff;
+			  padding-left:8px;
+			  font-size:13px;
 			}
 			
-			@media (max-width: 480px) {
-			  .form-wrapper {
-			    height: 1100px;
-			  }
-			
-			  .form-wrapper iframe {
-			    height: 1100px;
-			  }
+			/* NODE GRAPH */
+			.node{
+			  padding:6px;
+			  margin:6px 0;
+			  background:#111a2a;
+			  border-radius:8px;
+			  cursor:pointer;
+			  transition:0.15s;
 			}
+			
+			.node:hover{background:#1a2742}
+			
+			.node.focus{
+			  background:#5b8cff;
+			  transform:scale(1.05);
+			}
+			
+			/* ACCORDION */
+			.accordion button{
+			  width:100%;
+			  padding:8px;
+			  background:#111a2a;
+			  color:white;
+			  border:none;
+			  cursor:pointer;
+			}
+			
+			.hidden{display:none}
+			
+			iframe{
+			  width:100%;
+			  height:400px;
+			  border:0;
+			}
+			
+			.graph-wrap{
+			  position:relative;
+			  padding-left:10px;
+			}
+			
+			/* SVG overlay */
+			.graph-lines{
+			  position:absolute;
+			  left:0;
+			  top:0;
+			  width:100%;
+			  height:100%;
+			  z-index:0;
+			  opacity:0.25;
+			}
+			
+			/* nodes nad liniami */
+			.node{
+			  position:relative;
+			  z-index:2;
+			}
+			
+			/* linie graph */
+			.graph-lines line{
+			  stroke:#5b8cff;
+			  stroke-width:1.2;
+			}
+			
+			/* =========================
+			   THEME SYSTEM (2026 style)
+			========================= */
+			
+			:root{
+			  --bg:#070a12;
+			  --panel:#111a2a;
+			  --text:#e6eaf2;
+			  --muted:#9fb3c8;
+			  --accent:#5b8cff;
+			}
+			
+			/* LIGHT MODE */
+			body.light{
+			  --bg:#f5f7fb;
+			  --panel:#ffffff;
+			  --text:#111827;
+			  --muted:#4b5563;
+			  --accent:#2563eb;
+			}
+			
+			body{
+			  background:var(--bg);
+			  color:var(--text);
+			}
+			
+			/* panels unify */
+			.left,.center,.right,.card,.node,.topbar{
+			  background:var(--panel);
+			  color:var(--text);
+			}
+			
+			.chips span{
+			  background:rgba(0,0,0,0.08);
+			}
+			
+			body.light .chips span{
+			  background:rgba(0,0,0,0.05);
+			}
+			
+			/* accent reuse */
+			.node.focus{
+			  background:var(--accent);
+			}
+			
+			.switch{
+			  display:flex;
+			  gap:6px;
+			  align-items:center;
+			}
+			
+			.switch button{
+			  height:32px;
+			  padding:0 10px;
+			  min-width:70px;
+			  border-radius:6px;
+			  font-size:12px;
+			  line-height:1;
+			  display:flex;
+			  align-items:center;
+			  justify-content:center;
+			  white-space:nowrap;
+			}
+			
+			.cli{
+			  padding:12px;
+			}
+			
+			.cli-window{
+			  background:var(--panel);
+			  border:1px solid rgba(255,255,255,0.08);
+			  border-radius:12px;
+			  padding:10px;
+			
+			  display:flex;
+			  flex-direction:column;
+			  gap:8px;
+			
+			  box-sizing:border-box;
+			  overflow:hidden;
+			}
+			
+			.cli-output{
+			  font-family:monospace;
+			  font-size:12px;
+			  min-height:120px;
+			  color:var(--muted);
+			  margin-bottom:8px;
+			}
+			
+			.cli input{
+			  width:100%;
+			  box-sizing:border-box;
+			
+			  background:var(--panel);
+			  border:1px solid rgba(255,255,255,0.12);
+			  color:var(--text);
+			
+			  padding:8px;
+			  border-radius:8px;
+			
+			  font-family:monospace;
+			}
+			
+			.hidden{ display:none; }
+			
+			*{
+			  box-sizing:border-box;
+			}
+			
+			.center{
+			  background:var(--panel);
+			  border-radius:16px;
+			  padding:20px;
+			  display:flex;
+			  flex-direction:column;
+			  gap:16px;
+			}
+			
+			.single-panel {
+			  background:rgba(255,255,255,0.03);
+			  border:1px solid rgba(255,255,255,0.06);
+			  border-radius:14px;
+			
+			  padding:18px;
+			  box-shadow:0 10px 30px rgba(0,0,0,0.25);
+			  margin-bottom: 10px;
+			}
+			
+			a{
+			  color:var(--text);
+			  text-decoration:none;
+			
+			  display:inline-block;
+			  padding:2px 6px;
+			  border-radius:8px;
+			
+			  border:1px solid transparent;
+			  transition:0.2s ease;
+			
+			  position:relative;
+			}
+			
+			/* hover = system activation frame */
+			a:hover{
+			  border:1px solid rgba(91,140,255,0.55);
+			  background:rgba(91,140,255,0.08);
+			  color:var(--accent);
+			
+			  box-shadow:0 0 12px rgba(91,140,255,0.25);
+			  transform:translateY(-1px);
+			}
+			
+			/* active click feedback */
+			a:active{
+			  transform:scale(0.98);
+			  box-shadow:0 0 6px rgba(91,140,255,0.2);
+			}
+			
+			.link-card{
+			  display:flex;
+			  align-items:center;
+			  justify-content:center;
+			  border-radius:12px;
+			  background:var(--panel);
+			  border:1px solid transparent;
+			  color:var(--text);
+			  text-decoration:none;
+			  transition:0.2s ease;
+			}
+			
 		</style>
 	</head>
 	<body>
-		<header>
-		  <div class="hero">
-		    
-		    <div class="hero-text">
-		      <h1>Przemysław Piersiak</h1>
-		      <div class="subtitle">IT Engineer | Hardware & Software IT Services | System Administration & Infrastructure Support</div>
-		    </div>
+		<div class="topbar">
+			<div class="brand">https://przemyslaw-piersiak.github.io</div>
+			<div class="switch">
+				<button id="uiBtn" class="active">UI</button>
+				<button id="cliBtn">CLI</button>
+				<button id="themeBtn">🌙 Theme</button>
+			</div>
+		</div>
+		<div id="cliMode" class="cli hidden">
+			<div class="cli-window">
+				<div class="cli-output" id="cliOutput">
+					system ready, enter help or command ...
+				</div>
+				<input id="cliInput" placeholder="enter commands..." />
+			</div>
+		</div>
 		
-		    <img src="user-150x150.jpg" class="avatar-right" alt="avatar">
+		<d id="uiMode" class="grid3">
 		
-		  </div>
-		</header>
-		<div class="container">
-			<section>
-				<h2>O mnie</h2>
-				<div class="card">
-					Administrator systemów i programista PHP z ponad 15-letnim doświadczeniem w środowiskach produkcyjnych.
-					Specjalizuję się w projektowaniu, utrzymaniu i optymalizacji infrastruktury IT, systemów webowych oraz usług krytycznych.
-					Pracuję zarówno na poziomie systemów operacyjnych, aplikacji i integracji backendowych, jak również w zakresie serwisu sprzętu komputerowego (hardware), diagnostyki i napraw poważnych awarii oraz odzyskiwania danych po uszkodzeniach systemowych i fizycznych.
+		<aside class="left">
+			<img src="https://przemyslaw-piersiak.github.io/user-150x150.jpg" class="avatar">
+			<h1>Przemysław Piersiak</h1>
+			<div class="panel single-panel">
+				<div class="role">
+					IT Engineer / Linux / Windows / Security / DevOps / Hardware / DTP
+				</div>
+			</div>
+			<div class="panel single-panel">
+				<div class="box">
+					Production infrastructure engineer (15+ years). Systems • Backend • Hardware • Incident
+				</div>
+			</div>
+			<div class="panel single-panel">
+				<div class="chips">
+					<span>Linux / </span>
+					<span>Windows / </span>
+					<span>PHP / </span>
+					<span>MySQL / </span>
+					<span>Security / </span>
+					<span>Hardware / </span>
+				</div>
+			</div>
+			<div class="graph-wrap">
+				<svg class="graph-lines" viewBox="0 0 200 200">
+					<line x1="20" y1="20" x2="180" y2="60"/>
+					<line x1="20" y1="20" x2="180" y2="100"/>
+					<line x1="20" y1="20" x2="180" y2="140"/>
+					<line x1="20" y1="20" x2="180" y2="180"/>
+				</svg>
+				<div class="node infra">Infra</div>
+				<div class="node backend">Backend</div>
+				<div class="node security">Security</div>
+				<div class="node incident">Incident</div>
+				<div class="node hardware">Hardware</div>
+				<div class="node dtp">DTP</div>
+			</div>
+		</aside>
+		
+		<main class="center">
+			<section class="block">
+				<div class="panel single-panel">
+					<h2>O mnie</h2>
+					<div class="card">
+						Administrator systemów i programista PHP z ponad 15-letnim doświadczeniem w środowiskach produkcyjnych.
+						Specjalizuję się w projektowaniu, utrzymaniu i optymalizacji infrastruktury IT, systemów webowych oraz usług krytycznych.
+						Pracuję zarówno na poziomie systemów operacyjnych, aplikacji i integracji backendowych, jak również w zakresie serwisu sprzętu komputerowego (hardware), diagnostyki i napraw poważnych awarii oraz odzyskiwania danych po uszkodzeniach systemowych i fizycznych.
+					</div>
 				</div>
 				<div class="grid">
 					<div class="card">
 						<b>System Administration</b>
 						<ul>
-							<li>Linux: Debian, Ubuntu, CentOS, Gentoo</li>
+							<li>Linux (Debian, Ubuntu, CentOS, Gentoo)</li>
 							<li>Windows Server / Active Directory</li>
-							<li>Administracja serwerami WWW i usługami systemowymi</li>
-							<li>Konfiguracja, utrzymanie i hardening systemów</li>
-							<li>Integracja warstwy sprzętowej i systemowej (diagnostyka hardware/software)</li>
+							<li>WWW services administration</li>
+							<li>Hardening + system integration</li>
 						</ul>
 					</div>
 					<div class="card">
 						<b>Hardware & Physical Repair</b>
 						<ul>
-							<li>Diagnostyka i naprawa sprzętu komputerowego (PC / laptop)</li>
-							<li>Reanimacja systemów po awariach sprzętowych</li>
-							<li>Wymiana i testowanie podzespołów (RAM, SSD, CPU, PSU)</li>
-							<li>Odzyskiwanie danych z uszkodzonych nośników</li>
-							<li>Analiza awarii: dyski, BIOS/UEFI, boot failure</li>
-							<li>Optymalizacja i modernizacja sprzętu</li>
+							<li>PC / laptop diagnostics & repair</li>
+							<li>System recovery after hardware failure</li>
+							<li>BIOS / UEFI / boot repair</li>
+							<li>Data recovery (logical + physical)</li>
 						</ul>
 					</div>
 					<div class="card">
 						<b>Networking & Infrastructure</b>
 						<ul>
-							<li>LAN/WAN, konfiguracja i diagnostyka sieci</li>
-							<li>WiFi (WPA/WPA2), DHCP, routing, switching</li>
-							<li>Integracja i rozbudowa infrastruktury lokalnej</li>
-							<li>Konfiguracja UPS, urządzeń sieciowych (router, switch, AP)</li>
-							<li>Administracja i projektowanie środowisk sieciowych</li>
+							<li>LAN / WAN / WiFi</li>
+							<li>DHCP / routing / switching</li>
+							<li>Infrastructure design</li>
 						</ul>
 					</div>
 					<div class="card">
-						<b>Backend & Web Development</b>
+						<b>Backend & Web</b>
 						<ul>
-							<li>PHP, MySQL, JavaScript, HTML, CSS</li>
-							<li>Bootstrap, jQuery</li>
-							<li>Projektowanie i utrzymanie systemów CMS</li>
-							<li>Aplikacje webowe: ewidencje, statystyki, systemy zarządzania</li>
-							<li>Responsywne strony WWW (desktop / mobile)</li>
+							<li>PHP / MySQL / JS</li>
+							<li>CMS systems</li>
+							<li>API integrations</li>
 						</ul>
 					</div>
 					<div class="card">
-						<b>Databases & Performance</b>
+						<b>Databases</b>
 						<ul>
-							<li>MySQL – optymalizacja i tuning wydajności</li>
-							<li>Backup / recovery / disaster recovery</li>
-							<li>Analiza i optymalizacja zapytań</li>
-							<li>Diagnostyka problemów wydajnościowych</li>
+							<li>MySQL optimization</li>
+							<li>Backup / restore / DR</li>
+							<li>Query tuning</li>
 						</ul>
 					</div>
 					<div class="card">
-						<b>Email & Server Services</b>
+						<b>Email Systems</b>
 						<ul>
 							<li>Postfix / Dovecot</li>
 							<li>SMTP / IMAP / POP3</li>
-							<li>Konfiguracja i utrzymanie usług pocztowych</li>
-							<li>Diagnostyka problemów dostarczania poczty</li>
-						</ul>
-					</div>
-					<div class="card">
-						<b>Security & Incident Response</b>
-						<ul>
-							<li>Audyt bezpieczeństwa systemów i aplikacji</li>
-							<li>Analiza powłamaniowa i log analysis</li>
-							<li>Usuwanie malware i incident recovery</li>
-							<li>Odzyskiwanie danych i systemów po awarii</li>
-							<li>Ethical hacking w zakresie odzyskiwania dostępu</li>
-							<li>Full-stack incident response (software + hardware + data recovery)</li>
-						</ul>
-					</div>
-					<div class="card">
-						<b>Engineering & Delivery</b>
-						<ul>
-							<li>Projektowanie i wdrożenia stron WWW</li>
-							<li>Instalacje i migracje serwisów oraz baz danych</li>
-							<li>Wsparcie produkcyjne i utrzymaniowe (support)</li>
-							<li>Dobór i konfiguracja infrastruktury hostingowej</li>
-							<li>Integracje systemów i automatyzacja procesów</li>
-						</ul>
-					</div>
-					<div class="card">
-						<b>Design & Additional Skills</b>
-						<ul>
-							<li>DTP: Photoshop, Illustrator, InDesign, Corel, QuarkXPress</li>
-							<li>Skład publikacji: książki, reklamy, materiały marketingowe</li>
-							<li>AI / LLM: prompt engineering, analiza danych, generowanie treści</li>
-							<li>Praca z narzędziami i systemami produkcyjnymi</li>
-						</ul>
-					</div>
-				</div>
-			</section>
-			<section>
-				<h2>Umiejętności</h2>
-				<div class="grid">
-					<div class="card">
-						<b>Systemy</b>
-						<ul>
-							<li>Linux (Debian, Ubuntu, CentOS)</li>
-							<li>Windows Server</li>
-							<li>Active Directory</li>
-						</ul>
-					</div>
-					<div class="card">
-						<b>Backend</b>
-						<ul>
-							<li>PHP</li>
-							<li>MySQL</li>
-							<li>API / integracje</li>
+							<li>Mail troubleshooting</li>
 						</ul>
 					</div>
 					<div class="card">
 						<b>Security</b>
 						<ul>
-							<li>Audyt systemów</li>
-							<li>Analiza incydentów</li>
-							<li>Hardening serwerów</li>
+							<li>Audits</li>
+							<li>Forensics</li>
+							<li>Incident response</li>
+						</ul>
+					</div>
+					<div class="card">
+						<b>DTP / Publishing</b>
+						<ul>
+							<li>Adobe / Corel / QuarkXPress</li>
+							<li>Print production pipeline</li>
 						</ul>
 					</div>
 				</div>
-			</section>
-			<section>
+				
 				<h2>Projekty</h2>
 				<div class="grid">
-					<div class="card">
-						<a href="https://nettg.pl" target="_blank">nettg.pl</a>
+					<a class="card single-panel link-card" href="https://nettg.pl" target="_blank">nettg.pl</a>
+					<a class="card single-panel link-card" href="https://>wpr.pl" target="_blank">wpr.pl</a>
+					<a class="card single-panel link-card" href="https://solidarnosckatowice.pl" target="_blank">solidarnosckatowice.pl</a>
+					<a class="card single-panel link-card" href="https://energiapress.pl" target="_blank">energiapress.pl</a>
+					<a class="card single-panel link-card" href="https://wydawnictwo-gospodarcze.pl" target="_blank">wydawnictwo-gospodarcze.pl</a>
+					<a class="card single-panel link-card" href="https://remiza-pawlowice.com.pl" target="_blank">remiza-pawlowice.com.pl</a>
+					<a class="card single-panel link-card" href="https://shorestudio.pl" target="_blank">shorestudio.pl</a>
+					<a class="card single-panel link-card" href="https://bartlomiejszopa.com" target="_blank">bartlomiejszopa.com</a>
+				</div>
+				
+				<h2>Kontakt</h2>
+				<div class="accordion">
+					<button id="formToggle">Otwórz formularz kontaktowy</button>
+					<div id="formWrap" class="hidden">
+						<iframe
+							src="https://docs.google.com/forms/d/e/1FAIpQLSdrEGxrdCG2SMNDslkPVChZ215JplKWMx3QE13K4jHWVsRcbw/viewform?embedded=true">
+						</iframe>
 					</div>
-					<div class="card">
-						<a href="https://wpr.pl" target="_blank">wpr.pl</a>
-					</div>
-					<div class="card">
-						<a href="https://solidarnosckatowice.pl" target="_blank">solidarnosckatowice.pl</a>
-					</div>
-					<div class="card">
-						<a href="https://energiapress.pl" target="_blank">energiapress.pl</a>
-					</div>
-					<div class="card">
-						<a href="https://wydawnictwo-gospodarcze.pl" target="_blank">wydawnictwo-gospodarcze.pl</a>
-					</div>
-					<div class="card">
-						<a href="https://remiza-pawlowice.com.pl" target="_blank">remiza-pawlowice.com.pl</a>
-					</div>
-					<div class="card">
-						<a href="https://shorestudio.pl" target="_blank">shorestudio.pl</a>
-					</div>
-					<div class="card">
-						<a href="https://bartlomiejszopa.com" target="_blank">bartlomiejszopa.com</a>
-					</div>
-				</div>	
+				</div>
 			</section>
-			<section class="contact-section">
-			  <h2>Kontakt</h2>
-			
-			  <p class="contact-subtitle">
-			    Napisz wiadomość — odpowiadam zazwyczaj tego samego dnia.
-			  </p>
-			
-			  <details class="contact-card">
-			    <summary>
-			      Otwórz formularz kontaktowy
-			      <span class="arrow">›</span>
-			    </summary>
-			
-			    <div class="contact-content">
-			
-			      <!-- honeypot anti-spam -->
-			      <div class="honeypot">
-			        <input type="text" name="website" tabindex="-1" autocomplete="off">
-			      </div>
-			
-			      <div class="form-wrapper">
-			
-			        <div id="loader">
-			          Ładowanie formularza…
-			        </div>
-			
-			        <iframe
-			          id="gform"
-			          src="https://docs.google.com/forms/d/e/1FAIpQLSdrEGxrdCG2SMNDslkPVChZ215JplKWMx3QE13K4jHWVsRcbw/viewform?embedded=true"
-			          loading="lazy"
-			          frameborder="0"
-			          scrolling="no"
-			          onload="document.querySelector('.form-wrapper').classList.add('loaded'); document.getElementById('loader').style.display='none';"
-			        ></iframe>
-			
-			      </div>
-			    </div>
-			  </details>
-			</section>
+		</main>
+		<aside class="right">
+		<h3>Certyfikaty & szkolenia</h3>
+		<div class="card">
+			<b>2023</b><br>
+			Wprowadzenie do bezpieczeństwa Active Directory<br>
+			(AD w środowisku organizacyjnym)
 		</div>
+		<div class="card">
+			<b>2024</b><br>
+			Analiza powłamaniowa w Linuksie<br>
+			Zaawansowana analiza incydentów i forensic
+		</div>
+		<div class="card">
+			<b>2024</b><br>
+			Hackowanie sieci i testy penetracyjne<br>
+			Symulacja ataków + zabezpieczenia infrastruktury
+		</div>
+		<div class="card">
+			<b>2025</b><br>
+			AI / LLM Engineering<br>
+			Prompt engineering, analiza danych, generowanie grafik, workflow automatyzacji
+		</div>
+	</aside>
+	</div>
+		
 		<footer>
 			© 2026 Przemysław Piersiak
 		</footer>
