@@ -28,115 +28,150 @@
 		  gtag('config', 'G-ESF927GTZG');
 		</script>
 		<script>
-			const uiBtn = document.getElementById("uiBtn");
-			const cliBtn = document.getElementById("cliBtn");
-			const uiMode = document.getElementById("uiMode");
-			
-			const themeBtn = document.getElementById("themeBtn");
-			
-			const formToggle = document.getElementById("formToggle");
-			const formWrap = document.getElementById("formWrap");
-			
-			const nodes = document.querySelectorAll(".node");
-			
-			uiBtn.onclick = () => {
-			  uiMode.style.display = "grid";
-			};
-			
-			cliBtn.onclick = () => {
-			  uiMode.style.display = "none";
-			};
-			
-			
-			nodes.forEach(node => {
-			  node.onclick = () => {
-			    nodes.forEach(n => n.classList.remove("focus"));
-			    node.classList.add("focus");
-			  };
-			
-			  node.onmouseenter = () => {
-			    node.style.transform = "scale(1.03)";
-			  };
-			
-			  node.onmouseleave = () => {
-			    node.style.transform = "scale(1)";
-			  };
-			});
-			
-			
-			
-			
-			formToggle.onclick = () => {
-			  formWrap.classList.toggle("hidden");
-			};
-			
-			function setTheme(mode) {
-			  const isLight = mode === "light";
-			
-			  document.body.classList.toggle("light", isLight);
-			
-			  localStorage.setItem("theme", mode);
-			
-			  themeBtn.textContent = isLight ? "☀ light" : "🌙 dark";
-			}
-			
-			(function initTheme() {
-			  const saved = localStorage.getItem("theme");
-			
-			  if (saved) {
-			    setTheme(saved);
-			    return;
-			  }
-			
-			  const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-			  setTheme(systemDark ? "dark" : "light");
-			})();
-			
-			themeBtn.onclick = () => {
-			  const isLight = document.body.classList.contains("light");
-			  setTheme(isLight ? "dark" : "light");
-			};
-			
-			const cliMode = document.getElementById("cliMode");
-			
-			uiBtn.onclick = () => {
-			  uiMode.style.display = "grid";
-			  cliMode.classList.add("hidden");
-			
-			  uiBtn.classList.add("active");
-			  cliBtn.classList.remove("active");
-			};
-			
-			cliBtn.onclick = () => {
-			  uiMode.style.display = "none";
-			  cliMode.classList.remove("hidden");
-			
-			  cliBtn.classList.add("active");
-			  uiBtn.classList.remove("active");
-			};
-			
-			const cliInput = document.getElementById("cliInput");
-			const cliOutput = document.getElementById("cliOutput");
-			
-			cliInput.addEventListener("keydown", (e) => {
-			  if(e.key !== "Enter") return;
-			
-			  const cmd = cliInput.value.trim();
-			  cliInput.value = "";
-			
-			  cliOutput.innerHTML += `\n> ${cmd}`;
-			
-			  
-			  if(cmd === "help"){
-			    cliOutput.innerHTML += "\ncommands: help, infra, backend, security";
-			  }
-			
-			  if(cmd === "infra"){
-			    cliOutput.innerHTML += "\nINFRA: Linux, Windows Server, networking, uptime systems";
-			  }
-			
-			  cliOutput.scrollTop = cliOutput.scrollHeight;
-			});
+		document.addEventListener("DOMContentLoaded", () => {
+		
+		  // =========================
+		  // ELEMENTS
+		  // =========================
+		  const uiBtn = document.getElementById("uiBtn");
+		  const cliBtn = document.getElementById("cliBtn");
+		  const themeBtn = document.getElementById("themeBtn");
+		
+		  const uiMode = document.getElementById("uiMode");
+		  const cliMode = document.getElementById("cliMode");
+		
+		  const formToggle = document.getElementById("formToggle");
+		  const formWrap = document.getElementById("formWrap");
+		
+		  const cliInput = document.getElementById("cliInput");
+		  const cliOutput = document.getElementById("cliOutput");
+		
+		  const nodes = document.querySelectorAll(".node");
+		
+		  // =========================
+		  // SAFETY CHECK
+		  // =========================
+		  if (!uiBtn || !cliBtn || !uiMode || !cliMode || !themeBtn) {
+		    console.error("UI init failed: missing elements");
+		    return;
+		  }
+		
+		  // =========================
+		  // MODE SWITCH (UI / CLI)
+		  // =========================
+		  function setMode(mode) {
+		    const isUI = mode === "ui";
+		
+		    uiMode.style.display = isUI ? "grid" : "none";
+		    cliMode.classList.toggle("hidden", isUI);
+		
+		    uiBtn.classList.toggle("active", isUI);
+		    cliBtn.classList.toggle("active", !isUI);
+		  }
+		
+		  setMode("ui");
+		
+		  uiBtn.addEventListener("click", () => setMode("ui"));
+		  cliBtn.addEventListener("click", () => setMode("cli"));
+		
+		  // =========================
+		  // THEME SYSTEM
+		  // =========================
+		  function setTheme(mode) {
+		    const isLight = mode === "light";
+		
+		    document.body.classList.toggle("light", isLight);
+		    localStorage.setItem("theme", mode);
+		
+		    themeBtn.textContent = isLight ? "☀ light" : "🌙 dark";
+		  }
+		
+		  (function initTheme() {
+		    const saved = localStorage.getItem("theme");
+		
+		    if (saved) {
+		      setTheme(saved);
+		      return;
+		    }
+		
+		    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+		    setTheme(systemDark ? "dark" : "light");
+		  })();
+		
+		  themeBtn.addEventListener("click", () => {
+		    const isLight = document.body.classList.contains("light");
+		    setTheme(isLight ? "dark" : "light");
+		  });
+		
+		  // =========================
+		  // NODE GRAPH
+		  // =========================
+		  nodes.forEach(node => {
+		
+		    node.addEventListener("click", () => {
+		      nodes.forEach(n => n.classList.remove("focus"));
+		      node.classList.add("focus");
+		    });
+		
+		    node.addEventListener("mouseenter", () => {
+		      node.style.transform = "scale(1.03)";
+		    });
+		
+		    node.addEventListener("mouseleave", () => {
+		      node.style.transform = "scale(1)";
+		    });
+		
+		  });
+		
+		  // =========================
+		  // FORM TOGGLE
+		  // =========================
+		  if (formToggle && formWrap) {
+		    formToggle.addEventListener("click", () => {
+		      formWrap.classList.toggle("hidden");
+		    });
+		  }
+		
+		  // =========================
+		  // CLI
+		  // =========================
+		  if (cliInput && cliOutput) {
+		
+		    cliInput.addEventListener("keydown", (e) => {
+		      if (e.key !== "Enter") return;
+		
+		      const cmd = cliInput.value.trim();
+		      cliInput.value = "";
+		
+		      cliOutput.innerHTML += `\n> ${cmd}`;
+		
+		      switch (cmd) {
+		        case "help":
+		          cliOutput.innerHTML += "\ncommands: help, infra, backend, security";
+		          break;
+		
+		        case "infra":
+		          cliOutput.innerHTML += "\nINFRA: Linux, Windows Server, networking, uptime systems";
+		          break;
+		
+		        case "backend":
+		          cliOutput.innerHTML += "\nBACKEND: PHP, MySQL, APIs, system integration";
+		          break;
+		
+		        case "security":
+		          cliOutput.innerHTML += "\nSECURITY: audits, forensics, incident response";
+		          break;
+		
+		        default:
+		          cliOutput.innerHTML += "\nunknown command";
+		      }
+		
+		      cliOutput.scrollTop = cliOutput.scrollHeight;
+		    });
+		
+		  }
+		
+		});
 		</script>
 		<style>
 			body{
