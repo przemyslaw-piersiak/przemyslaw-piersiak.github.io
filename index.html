@@ -28,168 +28,137 @@
 		  gtag('config', 'G-ESF927GTZG');
 		</script>
 		<script>
-		document.addEventListener("DOMContentLoaded", () => {
-		
-		  // =========================
-		  // ELEMENTS
-		  // =========================
-		  const uiBtn = document.getElementById("uiBtn");
-		  const cliBtn = document.getElementById("cliBtn");
-		  const themeBtn = document.getElementById("themeBtn");
-		
-		  const uiMode = document.getElementById("uiMode");
-		  const cliMode = document.getElementById("cliMode");
-		
-		  const formToggle = document.getElementById("formToggle");
-		  const formWrap = document.getElementById("formWrap");
-		
-		  const cliInput = document.getElementById("cliInput");
-		  const cliOutput = document.getElementById("cliOutput");
-		
-		  const nodes = document.querySelectorAll(".node");
-		
-		  // =========================
-		  // SAFETY CHECK
-		  // =========================
-		  if (!uiBtn || !cliBtn || !uiMode || !cliMode || !themeBtn) {
-		    console.error("UI init failed: missing elements");
-		    return;
-		  }
-		
-		  // =========================
-		  // MODE SWITCH (UI / CLI)
-		  // =========================
-		  function setMode(mode) {
-		    const isUI = mode === "ui";
-		
-		    uiMode.style.display = isUI ? "grid" : "none";
-		    cliMode.classList.toggle("hidden", isUI);
-		
-		    uiBtn.classList.toggle("active", isUI);
-		    cliBtn.classList.toggle("active", !isUI);
-		  }
-		
-		  setMode("ui");
-		
-		  uiBtn.addEventListener("click", () => setMode("ui"));
-		  cliBtn.addEventListener("click", () => setMode("cli"));
-		
-		  // =========================
-		  // THEME SYSTEM
-		  // =========================
-		  const THEME_KEY = "theme";
+document.addEventListener("DOMContentLoaded", () => {
 
-			function setTheme(mode) {
-			  const isLight = mode === "light";
-			
-			  // body state
-			  document.body.classList.remove("light", "dark");
-			  document.body.classList.add(isLight ? "light" : "dark");
-			
-			  // persist
-			  localStorage.setItem(THEME_KEY, mode);
-			
-			  // UI label
-			  if (themeBtn) {
-			    themeBtn.textContent = isLight ? "☀ light" : "🌙 dark";
-			  }
-			
-			  // mobile browser UI bar color
-			  const meta = document.querySelector('meta[name="theme-color"]');
-			  if (meta) {
-			    meta.setAttribute("content", isLight ? "#f5f7fb" : "#070a12");
-			  }
-			}
-			
-			// init theme (boot)
-			(function initTheme() {
-			  const saved = localStorage.getItem(THEME_KEY);
-			
-			  if (saved === "light" || saved === "dark") {
-			    setTheme(saved);
-			    return;
-			  }
-			
-			  // fallback: dark mode default
-			  setTheme("dark");
-			})();
-			
-			// toggle button
-			themeBtn?.addEventListener("click", () => {
-			  const isLight = document.body.classList.contains("light");
-			  setTheme(isLight ? "dark" : "light");
-			});
-		
-		  // =========================
-		  // NODE GRAPH
-		  // =========================
-		  nodes.forEach(node => {
-		
-		    node.addEventListener("click", () => {
-		      nodes.forEach(n => n.classList.remove("focus"));
-		      node.classList.add("focus");
-		    });
-		
-		    node.addEventListener("mouseenter", () => {
-		      node.style.transform = "scale(1.03)";
-		    });
-		
-		    node.addEventListener("mouseleave", () => {
-		      node.style.transform = "scale(1)";
-		    });
-		
-		  });
-		
-		  // =========================
-		  // FORM TOGGLE
-		  // =========================
-		  if (formToggle && formWrap) {
-		    formToggle.addEventListener("click", () => {
-		      formWrap.classList.toggle("hidden");
-		    });
-		  }
-		
-		  // =========================
-		  // CLI
-		  // =========================
-		  if (cliInput && cliOutput) {
-		
-		    cliInput.addEventListener("keydown", (e) => {
-		      if (e.key !== "Enter") return;
-		
-		      const cmd = cliInput.value.trim();
-		      cliInput.value = "";
-		
-		      cliOutput.innerHTML += `\n> ${cmd}`;
-		
-		      switch (cmd) {
-		        case "help":
-		          cliOutput.innerHTML += "\ncommands: help, infra, backend, security";
-		          break;
-		
-		        case "infra":
-		          cliOutput.innerHTML += "\nINFRA: Linux, Windows Server, networking, uptime systems";
-		          break;
-		
-		        case "backend":
-		          cliOutput.innerHTML += "\nBACKEND: PHP, MySQL, APIs, system integration";
-		          break;
-		
-		        case "security":
-		          cliOutput.innerHTML += "\nSECURITY: audits, forensics, incident response";
-		          break;
-		
-		        default:
-		          cliOutput.innerHTML += "\nunknown command";
-		      }
-		
-		      cliOutput.scrollTop = cliOutput.scrollHeight;
-		    });
-		
-		  }
-		
-		});
-		</script>	
+  // =========================
+  // CACHE ELEMENTS
+  // =========================
+  const uiBtn = document.getElementById("uiBtn");
+  const cliBtn = document.getElementById("cliBtn");
+  const themeBtn = document.getElementById("themeBtn");
+
+  const uiMode = document.getElementById("uiMode");
+  const cliMode = document.getElementById("cliMode");
+
+  const formToggle = document.getElementById("formToggle");
+  const formWrap = document.getElementById("formWrap");
+
+  const cliInput = document.getElementById("cliInput");
+  const cliOutput = document.getElementById("cliOutput");
+
+  const nodes = document.querySelectorAll(".node");
+  const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+
+  const THEME_KEY = "theme";
+
+  // safety
+  if (!uiBtn || !cliBtn || !uiMode || !cliMode || !themeBtn) {
+    console.error("UI init failed");
+    return;
+  }
+
+  // =========================
+  // MODE SWITCH
+  // =========================
+  function setMode(mode) {
+    const isUI = mode === "ui";
+
+    uiMode.style.display = isUI ? "grid" : "none";
+    cliMode.classList.toggle("hidden", isUI);
+
+    uiBtn.classList.toggle("active", isUI);
+    cliBtn.classList.toggle("active", !isUI);
+  }
+
+  uiBtn.addEventListener("click", () => setMode("ui"));
+  cliBtn.addEventListener("click", () => setMode("cli"));
+
+  setMode("ui");
+
+  // =========================
+  // THEME
+  // =========================
+  function setTheme(mode) {
+    const isLight = mode === "light";
+
+    document.body.classList.toggle("light", isLight);
+    document.body.classList.toggle("dark", !isLight);
+
+    localStorage.setItem(THEME_KEY, mode);
+
+    themeBtn.textContent = isLight ? "☀ light" : "🌙 dark";
+
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute(
+        "content",
+        isLight ? "#f5f7fb" : "#070a12"
+      );
+    }
+  }
+
+  const savedTheme = localStorage.getItem(THEME_KEY);
+  setTheme(savedTheme === "light" ? "light" : "dark");
+
+  themeBtn.addEventListener("click", () => {
+    const isLight = document.body.classList.contains("light");
+    setTheme(isLight ? "dark" : "light");
+  });
+
+  // =========================
+  // NODES (ONLY CLICK LOGIC)
+  // =========================
+  nodes.forEach(node => {
+    node.addEventListener("click", () => {
+      nodes.forEach(n => n.classList.remove("focus"));
+      node.classList.add("focus");
+    });
+  });
+
+  // =========================
+  // FORM TOGGLE
+  // =========================
+  if (formToggle && formWrap) {
+    formToggle.addEventListener("click", () => {
+      formWrap.classList.toggle("hidden");
+    });
+  }
+
+  // =========================
+  // CLI
+  // =========================
+  if (cliInput && cliOutput) {
+
+    cliInput.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter") return;
+
+      const cmd = cliInput.value.trim();
+      cliInput.value = "";
+
+      cliOutput.textContent += `\n> ${cmd}`;
+
+      switch (cmd) {
+        case "help":
+          cliOutput.textContent += "\ncommands: help, infra, backend, security";
+          break;
+        case "infra":
+          cliOutput.textContent += "\nINFRA: Linux, Windows Server, networking";
+          break;
+        case "backend":
+          cliOutput.textContent += "\nBACKEND: PHP, MySQL, APIs";
+          break;
+        case "security":
+          cliOutput.textContent += "\nSECURITY: audits, forensics";
+          break;
+        default:
+          cliOutput.textContent += "\nunknown command";
+      }
+
+      cliOutput.scrollTop = cliOutput.scrollHeight;
+    });
+  }
+
+});
+</script>
 		<style>
 			body{
 			  margin:0;
@@ -297,14 +266,12 @@
 			  background:#111a2a;
 			  border-radius:8px;
 			  cursor:pointer;
-			  transition:0.15s;
 			}
 			
 			.node:hover{background:#1a2742}
 			
 			.node.focus{
 			  background:#5b8cff;
-			  transform:scale(1.05);
 			}
 			
 			/* ACCORDION */
@@ -334,12 +301,6 @@
 			.node{
 			  position:relative;
 			  z-index:2;
-			}
-			
-			/* linie graph */
-			.graph-lines line{
-			  stroke:#5b8cff;
-			  stroke-width:1.2;
 			}
 			
 			/* =========================
@@ -636,7 +597,12 @@
 			body.light {
 			  --bg: #f5f7fb;
 			}
-
+      a,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
 			
 		</style>
 	</head>
@@ -685,12 +651,6 @@
 				</div>
 			</div>
 			<div class="graph-wrap">
-				<svg class="graph-lines" viewBox="0 0 200 200">
-					<line x1="20" y1="20" x2="180" y2="60"/>
-					<line x1="20" y1="20" x2="180" y2="100"/>
-					<line x1="20" y1="20" x2="180" y2="140"/>
-					<line x1="20" y1="20" x2="180" y2="180"/>
-				</svg>
 				<div class="node infra">Infra</div>
 				<div class="node backend">Backend</div>
 				<div class="node security">Security</div>
