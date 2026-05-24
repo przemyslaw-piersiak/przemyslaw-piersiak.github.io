@@ -834,6 +834,19 @@
 			  opacity: 1;
 			  transform: translateY(0);
 			}
+			.center > *,
+			.left > *,
+			.right > * {
+			  opacity: 0;
+			  animation: fadeInUp 0.4s ease forwards;
+			}
+			.left > *:nth-child(1),
+			.center > *:nth-child(1),
+			.right > *:nth-child(1) { animation-delay: 0.05s; }
+			
+			.left > *:nth-child(2),
+			.center > *:nth-child(2),
+			.right > *:nth-child(2) { animation-delay: 0.10s; }
 		</style>
 	</head>
 	<body class="dark">
