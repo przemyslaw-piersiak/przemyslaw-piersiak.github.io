@@ -86,22 +86,22 @@
 		    themeBtn.textContent = isLight ? "☀ light" : "🌙 dark";
 		  }
 		
-		  (function initTheme() {
-		    const saved = localStorage.getItem("theme");
-		
-		    if (saved) {
-		      setTheme(saved);
-		      return;
-		    }
-		
-		    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-		    setTheme(systemDark ? "dark" : "light");
-		  })();
-		
-		  themeBtn.addEventListener("click", () => {
-		    const isLight = document.body.classList.contains("light");
-		    setTheme(isLight ? "dark" : "light");
-		  });
+		  	(function initTheme() {
+			  const saved = localStorage.getItem("theme");
+			
+			  if (saved) {
+			    setTheme(saved);
+			    return;
+			  }
+			
+			  // FORCE DARK DEFAULT
+			  setTheme("dark");
+			})();
+			
+			themeBtn.addEventListener("click", () => {
+			  const isLight = document.body.classList.contains("light");
+			  setTheme(isLight ? "dark" : "light");
+			});
 		
 		  // =========================
 		  // NODE GRAPH
@@ -175,24 +175,31 @@
 		</script>
 		<script>
 		  window.addEventListener("load", () => {
+
+		  const overlay = document.getElementById("bootOverlay");
+		  if (!overlay) return;
 		
-		    const overlay = document.getElementById("bootOverlay");
+		  const MIN_TIME = 900; // krócej = bardziej responsywnie
 		
-		    if (!overlay) return;
+		  const start = performance.now();
 		
-		    const MIN_LOADER_TIME = 1200;
+		  const hide = () => {
+		    overlay.classList.add("hide");
 		
 		    setTimeout(() => {
+		      overlay.remove();
+		    }, 400);
+		  };
 		
-		      overlay.classList.add("hide");
+		  const elapsed = performance.now() - start;
 		
-		      setTimeout(() => {
-		        overlay.remove();
-		      }, 500);
+		  if (elapsed >= MIN_TIME) {
+		    hide();
+		  } else {
+		    setTimeout(hide, MIN_TIME - elapsed);
+		  }
 		
-		    }, MIN_LOADER_TIME);
-		
-		  });
+		});
 		</script>
 		<style>
 			body{
@@ -760,7 +767,7 @@
 			}
 		</style>
 	</head>
-	<body>
+	<body class="dark">
 		<div class="boot-overlay" id="bootOverlay" aria-hidden="true">
 		  <div class="boot-shell">
 		    <div class="boot-top">
