@@ -15,6 +15,8 @@
 		<meta property="og:type" content="website">
 		<meta property="og:url" content="https://przemyslaw-piersiak.github.io">
 		<link rel="icon" href="favicon.png">
+		<meta name="theme-color" content="#070a12">
+		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f7fb">
 		
 		<meta name="author" content="Przemysław Piersiak" />
 		<meta name="google-site-verification" content="-rS-cSM_Yamtohw3IVhIzwIMhb6CinHO95345xcv9r4" />
@@ -27,6 +29,15 @@
 		
 		  gtag('config', 'G-ESF927GTZG');
 		</script>
+		<script>
+		function updateThemeColor(isLight) {
+		  const color = isLight ? "#f5f7fb" : "#070a12";
+		
+		  document.querySelector('meta[name="theme-color"]')
+		    .setAttribute("content", color);
+		}
+		</script>
+		
 		<script>
 		document.addEventListener("DOMContentLoaded", () => {
 		
