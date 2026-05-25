@@ -1,82 +1,85 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const uiBtn = document.getElementById("uiBtn");
-  const cliBtn = document.getElementById("cliBtn");
-  const themeBtn = document.getElementById("themeBtn");
+  const uiToggleButton = document.getElementById("uiBtn");
+  const cliToggleButton = document.getElementById("cliBtn");
+  const themeToggleButton = document.getElementById("themeBtn");
   const uiMode = document.getElementById("uiMode");
   const cliMode = document.getElementById("cliMode");
-  const formToggle = document.getElementById("formToggle");
-  const formWrap = document.getElementById("formWrap");
+  const formToggleButton = document.getElementById("formToggle");
+  const formWrapper = document.getElementById("formWrap");
   const cliInput = document.getElementById("cliInput");
   const cliOutput = document.getElementById("cliOutput");
   const nodes = document.querySelectorAll(".node");
-  const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-  const THEME_KEY = "theme";
+  const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+  const loader = document.getElementById("loader");
+  const scrollButton = document.getElementById("scrollTopBtn");
+  const themeKey = "theme";
 
-  if (!uiBtn || !cliBtn || !uiMode || !cliMode || !themeBtn) {
+  if (!uiToggleButton || !cliToggleButton || !uiMode || !cliMode || !themeToggleButton) {
     console.error("UI init failed");
     return;
   }
 
-  function setMode(mode) {
-    const isUI = mode === "ui";
+  const setMode = (mode) => {
+    const isUiMode = mode === "ui";
 
-    uiMode.style.display = isUI ? "grid" : "none";
-    cliMode.classList.toggle("hidden", isUI);
+    uiMode.style.display = isUiMode ? "grid" : "none";
+    cliMode.classList.toggle("hidden", isUiMode);
 
-    uiBtn.classList.toggle("active", isUI);
-    cliBtn.classList.toggle("active", !isUI);
-  }
+    uiToggleButton.classList.toggle("active", isUiMode);
+    cliToggleButton.classList.toggle("active", !isUiMode);
+  };
 
-  uiBtn.addEventListener("click", () => setMode("ui"));
-  cliBtn.addEventListener("click", () => setMode("cli"));
+  const setTheme = (mode) => {
+    const isLightMode = mode === "light";
+
+    document.body.classList.toggle("light", isLightMode);
+    document.body.classList.toggle("dark", !isLightMode);
+
+    localStorage.setItem(themeKey, mode);
+    themeToggleButton.textContent = isLightMode ? "☀ light" : "🌙 dark";
+
+    if (themeColorMeta) {
+      themeColorMeta.setAttribute("content", isLightMode ? "#f5f7fb" : "#070a12");
+    }
+  };
+
+  uiToggleButton.addEventListener("click", () => setMode("ui"));
+  cliToggleButton.addEventListener("click", () => setMode("cli"));
   setMode("ui");
 
-  function setTheme(mode) {
-    const isLight = mode === "light";
-
-    document.body.classList.toggle("light", isLight);
-    document.body.classList.toggle("dark", !isLight);
-
-    localStorage.setItem(THEME_KEY, mode);
-
-    themeBtn.textContent = isLight ? "☀ light" : "🌙 dark";
-
-    if (metaThemeColor) {
-      metaThemeColor.setAttribute("content", isLight ? "#f5f7fb" : "#070a12");
-    }
-  }
-
-  const savedTheme = localStorage.getItem(THEME_KEY);
+  const savedTheme = localStorage.getItem(themeKey);
   setTheme(savedTheme === "light" ? "light" : "dark");
 
-  themeBtn.addEventListener("click", () => {
-    const isLight = document.body.classList.contains("light");
-    setTheme(isLight ? "dark" : "light");
+  themeToggleButton.addEventListener("click", () => {
+    const isLightMode = document.body.classList.contains("light");
+    setTheme(isLightMode ? "dark" : "light");
   });
 
-  nodes.forEach(node => {
+  nodes.forEach((node) => {
     node.addEventListener("click", () => {
-      nodes.forEach(n => n.classList.remove("focus"));
+      nodes.forEach((currentNode) => currentNode.classList.remove("focus"));
       node.classList.add("focus");
     });
   });
 
-  if (formToggle && formWrap) {
-    formToggle.addEventListener("click", () => {
-      formWrap.classList.toggle("hidden");
+  if (formToggleButton && formWrapper) {
+    formToggleButton.addEventListener("click", () => {
+      formWrapper.classList.toggle("hidden");
     });
   }
 
   if (cliInput && cliOutput) {
-    cliInput.addEventListener("keydown", (e) => {
-      if (e.key !== "Enter") return;
+    cliInput.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter") {
+        return;
+      }
 
-      const cmd = cliInput.value.trim();
+      const command = cliInput.value.trim();
       cliInput.value = "";
 
-      cliOutput.textContent += `\n> ${cmd}`;
+      cliOutput.textContent += `\n> ${command}`;
 
-      switch (cmd) {
+      switch (command) {
         case "help":
           cliOutput.textContent += "\ncommands: help, infra, backend, security";
           break;
@@ -97,8 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const loader = document.getElementById("loader");
-
   window.addEventListener("load", () => {
     setTimeout(() => {
       if (loader) {
@@ -107,14 +108,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 250);
   });
 
-  const scrollBtn = document.getElementById("scrollTopBtn");
-
-  if (scrollBtn) {
+  if (scrollButton) {
     window.addEventListener("scroll", () => {
-      scrollBtn.classList.toggle("show", window.scrollY > 300);
+      scrollButton.classList.toggle("show", window.scrollY > 300);
     });
 
-    scrollBtn.addEventListener("click", () => {
+    scrollButton.addEventListener("click", () => {
       window.scrollTo({
         top: 0,
         behavior: "smooth"

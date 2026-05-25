@@ -1,0 +1,24 @@
+{
+  "name": "przemyslaw-piersiak.github.io",
+  "version": "1.0.0",
+  "description": "Przemysław Piersiak – https://przemyslaw-piersiak.github.io/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/przemyslaw-piersiak/przemyslaw-piersiak.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/przemyslaw-piersiak/przemyslaw-piersiak.github.io/issues"
+  },
+  "homepage": "https://github.com/przemyslaw-piersiak/przemyslaw-piersiak.github.io#readme",
+  "devDependencies": {
+    "vite": "^8.0.14"
+  }
+}

@@ -1,215 +1,282 @@
 <!DOCTYPE html>
 <html lang="pl">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<title>Przemysław Piersiak | Hardware & Software IT Services | System Administration & Infrastructure Support</title>
-		<meta name="robots" content="index, follow">
-		<link rel="canonical" href="https://przemyslaw-piersiak.github.io/" />
-		<meta name="description" content="Administrator systemów i programista z ponad 15-letnim doświadczeniem w środowiskach produkcyjnych. Linux, Windows Server, sieci, bezpieczeństwo IT, MySQL oraz tworzenie i utrzymanie systemów webowych i infrastruktury serwerowej." />
-		<meta name="keywords" content="Przemysław Piersiak, Linux, Windows, SysAdmin, DevOps, PHP developer, Windows Server, Active Directory, MySQL, Postfix, Dovecot, sieci komputerowe, bezpieczeństwo IT, audit security, web development, backend, infrastructure engineer, system administration, recovery systems, automation, AI prompt engineering" />
-		<meta property="og:title" content="Przemysław Piersiak | Hardware & Software IT Services | System Administration & Infrastructure Support">
-		<meta property="og:description" content="Linux, Windows, PHP, Security, Infrastructure, DevOps & Web Systems">
-		<meta property="og:type" content="website">
-		<meta property="og:url" content="https://przemyslaw-piersiak.github.io">
-		<link rel="icon" href="favicon.png">
-		<meta name="theme-color" content="#070a12">
-		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f7fb">
-		
-		<meta name="author" content="Przemysław Piersiak" />
-		<meta name="google-site-verification" content="-rS-cSM_Yamtohw3IVhIzwIMhb6CinHO95345xcv9r4" />
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-ESF927GTZG"></script>
-		<link rel="stylesheet" href="css/style.css" />
-		<script defer src="js/main.js"></script>
-	</head>
-	<body class="dark">
-		
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Przemysław Piersiak | Hardware & Software IT Services | System Administration &
+      Infrastructure Support
+    </title>
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://przemyslaw-piersiak.github.io/" />
+    <meta
+      name="description"
+      content="Administrator systemów i programista z ponad 15-letnim doświadczeniem w środowiskach produkcyjnych. Linux, Windows Server, sieci, bezpieczeństwo IT, MySQL oraz tworzenie i utrzymanie systemów webowych i infrastruktury serwerowej."
+    />
+    <meta
+      name="keywords"
+      content="Przemysław Piersiak, Linux, Windows, SysAdmin, DevOps, PHP developer, Windows Server, Active Directory, MySQL, Postfix, Dovecot, sieci komputerowe, bezpieczeństwo IT, audit security, web development, backend, infrastructure engineer, system administration, recovery systems, automation, AI prompt engineering"
+    />
+    <meta
+      property="og:title"
+      content="Przemysław Piersiak | Hardware & Software IT Services | System Administration & Infrastructure Support"
+    />
+    <meta
+      property="og:description"
+      content="Linux, Windows, PHP, Security, Infrastructure, DevOps & Web Systems"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://przemyslaw-piersiak.github.io" />
+    <link rel="icon" href="favicon.png" />
+    <meta name="theme-color" content="#070a12" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#f5f7fb"
+    />
+    <meta name="author" content="Przemysław Piersiak" />
+    <meta
+      name="google-site-verification"
+      content="-rS-cSM_Yamtohw3IVhIzwIMhb6CinHO95345xcv9r4"
+    />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ESF927GTZG"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="js/main.js"></script>
+  </head>
+  <body class="dark">
     <div id="loader">
       <div class="spinner"></div>
     </div>
-    
-		<div class="topbar">
-			<div class="brand">https://przemyslaw-piersiak.github.io</div>
-			<div class="switch">
-				<button id="uiBtn" class="active">UI</button>
-				<button id="cliBtn">CLI</button>
-				<button id="themeBtn">🌙 Theme</button>
-			</div>
-		</div>
-		<div id="cliMode" class="cli hidden">
-			<div class="cli-window">
-				<div class="cli-output" id="cliOutput">
-					system ready, enter help or command ...
-				</div>
-				<input id="cliInput" placeholder="enter commands..." />
-			</div>
-		</div>
-		
-		<div id="uiMode" class="grid3">
-		
-		<aside class="left">
-			<img src="https://przemyslaw-piersiak.github.io/user-150x150.jpg" class="avatar">
-			<h1>Przemysław Piersiak</h1>
-			<div class="panel single-panel">
-				<div class="role">
-					IT Engineer / Linux / Windows / Security / DevOps / Hardware / DTP
-				</div>
-			</div>
-			<div class="panel single-panel">
-				<div class="box">
-					Production infrastructure engineer (15+ years). Systems • Backend • Hardware • Incident
-				</div>
-			</div>
-			<div class="panel single-panel">
-				<div class="chips">
-					<span>Linux / </span>
-					<span>Windows / </span>
-					<span>PHP / </span>
-					<span>MySQL / </span>
-					<span>Security / </span>
-					<span>Hardware / </span>
-				</div>
-			</div>
-			<div class="graph-wrap">
-				<div class="node infra">Infra</div>
-				<div class="node backend">Backend</div>
-				<div class="node security">Security</div>
-				<div class="node incident">Incident</div>
-				<div class="node hardware">Hardware</div>
-				<div class="node dtp">DTP</div>
-			</div>
-		</aside>
-		
-		<main class="center">
-			<section class="block">
-				<div class="panel single-panel">
-					<h2>O mnie</h2>
-					<div class="card">
-						Administrator systemów i programista PHP z ponad 15-letnim doświadczeniem w środowiskach produkcyjnych.
-						Specjalizuję się w projektowaniu, utrzymaniu i optymalizacji infrastruktury IT, systemów webowych oraz usług krytycznych.
-						Pracuję zarówno na poziomie systemów operacyjnych, aplikacji i integracji backendowych, jak również w zakresie serwisu sprzętu komputerowego (hardware), diagnostyki i napraw poważnych awarii oraz odzyskiwania danych po uszkodzeniach systemowych i fizycznych.
-					</div>
-				</div>
-				<div class="grid">
-					<div class="card">
-						<b>System Administration</b>
-						<ul>
-							<li>Linux (Debian, Ubuntu, CentOS, Gentoo)</li>
-							<li>Windows Server / Active Directory</li>
-							<li>WWW services administration</li>
-							<li>Hardening + system integration</li>
-						</ul>
-					</div>
-					<div class="card">
-						<b>Hardware & Physical Repair</b>
-						<ul>
-							<li>PC / laptop diagnostics & repair</li>
-							<li>System recovery after hardware failure</li>
-							<li>BIOS / UEFI / boot repair</li>
-							<li>Data recovery (logical + physical)</li>
-						</ul>
-					</div>
-					<div class="card">
-						<b>Networking & Infrastructure</b>
-						<ul>
-							<li>LAN / WAN / WiFi</li>
-							<li>DHCP / routing / switching</li>
-							<li>Infrastructure design</li>
-						</ul>
-					</div>
-					<div class="card">
-						<b>Backend & Web</b>
-						<ul>
-							<li>PHP / MySQL / JS</li>
-							<li>CMS systems</li>
-							<li>API integrations</li>
-						</ul>
-					</div>
-					<div class="card">
-						<b>Databases</b>
-						<ul>
-							<li>MySQL optimization</li>
-							<li>Backup / restore / DR</li>
-							<li>Query tuning</li>
-						</ul>
-					</div>
-					<div class="card">
-						<b>Email Systems</b>
-						<ul>
-							<li>Postfix / Dovecot</li>
-							<li>SMTP / IMAP / POP3</li>
-							<li>Mail troubleshooting</li>
-						</ul>
-					</div>
-					<div class="card">
-						<b>Security</b>
-						<ul>
-							<li>Audits</li>
-							<li>Forensics</li>
-							<li>Incident response</li>
-						</ul>
-					</div>
-					<div class="card">
-						<b>DTP / Publishing</b>
-						<ul>
-							<li>Adobe / Corel / QuarkXPress</li>
-							<li>Print production pipeline</li>
-						</ul>
-					</div>
-				</div>
-				
-				<h2>Projekty</h2>
-				<div class="grid">
-					<a class="card single-panel link-card" href="https://nettg.pl" target="_blank">nettg.pl</a>
-					<a class="card single-panel link-card" href="https://wpr.pl" target="_blank">wpr.pl</a>
-					<a class="card single-panel link-card" href="https://solidarnosckatowice.pl" target="_blank">solidarnosckatowice.pl</a>
-					<a class="card single-panel link-card" href="https://energiapress.pl" target="_blank">energiapress.pl</a>
-					<a class="card single-panel link-card" href="https://wydawnictwo-gospodarcze.pl" target="_blank">wydawnictwo-gospodarcze.pl</a>
-					<a class="card single-panel link-card" href="https://remiza-pawlowice.com.pl" target="_blank">remiza-pawlowice.com.pl</a>
-					<a class="card single-panel link-card" href="https://shorestudio.pl" target="_blank">shorestudio.pl</a>
-					<a class="card single-panel link-card" href="https://bartlomiejszopa.com" target="_blank">bartlomiejszopa.com</a>
-				</div>
-				
-				<h2>Kontakt</h2>
-				<div class="accordion">
-					<button id="formToggle">Otwórz formularz kontaktowy</button>
-					<div id="formWrap" class="hidden">
-						<iframe
-							src="https://docs.google.com/forms/d/e/1FAIpQLSdrEGxrdCG2SMNDslkPVChZ215JplKWMx3QE13K4jHWVsRcbw/viewform?embedded=true">
-						</iframe>
-					</div>
-				</div>
-			</section>
-		</main>
-		<aside class="right">
-		<h3>Certyfikaty & szkolenia</h3>
-		<div class="card">
-			<b>2023</b><br>
-			Wprowadzenie do bezpieczeństwa Active Directory<br>
-			(AD w środowisku organizacyjnym)
-		</div>
-		<div class="card">
-			<b>2024</b><br>
-			Analiza powłamaniowa w Linuksie<br>
-			Zaawansowana analiza incydentów i forensic
-		</div>
-		<div class="card">
-			<b>2024</b><br>
-			Hackowanie sieci i testy penetracyjne<br>
-			Symulacja ataków + zabezpieczenia infrastruktury
-		</div>
-		<div class="card">
-			<b>2025</b><br>
-			AI / LLM Engineering<br>
-			Prompt engineering, analiza danych, generowanie grafik, workflow automatyzacji
-		</div>
-	</aside>
-	</div>
-		
-		<footer>
-			<div class="copy">© 2026 Przemysław Piersiak</div>
-		</footer>
-	<button id="scrollTopBtn">↑</button>
-	</body>
+
+    <div class="topbar">
+      <div class="brand">https://przemyslaw-piersiak.github.io</div>
+      <div class="switch">
+        <button id="uiBtn" class="active">UI</button>
+        <button id="cliBtn">CLI</button>
+        <button id="themeBtn">🌙 Theme</button>
+      </div>
+    </div>
+
+    <div id="cliMode" class="cli hidden">
+      <div class="cli-window">
+        <div class="cli-output" id="cliOutput">system ready, enter help or command ...</div>
+        <input id="cliInput" placeholder="enter commands..." />
+      </div>
+    </div>
+
+    <div id="uiMode" class="grid3">
+      <aside class="left">
+        <img
+          src="https://przemyslaw-piersiak.github.io/user-150x150.jpg"
+          class="avatar"
+          alt="Przemysław Piersiak"
+        />
+        <h1>Przemysław Piersiak</h1>
+
+        <div class="panel single-panel">
+          <div class="role">
+            IT Engineer / Linux / Windows / Security / DevOps / Hardware / DTP
+          </div>
+        </div>
+
+        <div class="panel single-panel">
+          <div class="box">
+            Production infrastructure engineer (15+ years). Systems • Backend • Hardware • Incident
+          </div>
+        </div>
+
+        <div class="panel single-panel">
+          <div class="chips">
+            <span>Linux /</span>
+            <span>Windows /</span>
+            <span>PHP /</span>
+            <span>MySQL /</span>
+            <span>Security /</span>
+            <span>Hardware /</span>
+          </div>
+        </div>
+
+        <div class="graph-wrap">
+          <div class="node infra">Infra</div>
+          <div class="node backend">Backend</div>
+          <div class="node security">Security</div>
+          <div class="node incident">Incident</div>
+          <div class="node hardware">Hardware</div>
+          <div class="node dtp">DTP</div>
+        </div>
+      </aside>
+
+      <main class="center">
+        <section class="block">
+          <div class="panel single-panel">
+            <h2>O mnie</h2>
+            <div class="card">
+              Administrator systemów i programista PHP z ponad 15-letnim doświadczeniem w
+              środowiskach produkcyjnych. Specjalizuję się w projektowaniu, utrzymaniu i
+              optymalizacji infrastruktury IT, systemów webowych oraz usług krytycznych.
+              Pracuję zarówno na poziomie systemów operacyjnych, aplikacji i integracji
+              backendowych, jak również w zakresie serwisu sprzętu komputerowego (hardware),
+              diagnostyki i napraw poważnych awarii oraz odzyskiwania danych po
+              uszkodzeniach systemowych i fizycznych.
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="card">
+              <b>System Administration</b>
+              <ul>
+                <li>Linux (Debian, Ubuntu, CentOS, Gentoo)</li>
+                <li>Windows Server / Active Directory</li>
+                <li>WWW services administration</li>
+                <li>Hardening + system integration</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <b>Hardware & Physical Repair</b>
+              <ul>
+                <li>PC / laptop diagnostics & repair</li>
+                <li>System recovery after hardware failure</li>
+                <li>BIOS / UEFI / boot repair</li>
+                <li>Data recovery (logical + physical)</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <b>Networking & Infrastructure</b>
+              <ul>
+                <li>LAN / WAN / WiFi</li>
+                <li>DHCP / routing / switching</li>
+                <li>Infrastructure design</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <b>Backend & Web</b>
+              <ul>
+                <li>PHP / MySQL / JS</li>
+                <li>CMS systems</li>
+                <li>API integrations</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <b>Databases</b>
+              <ul>
+                <li>MySQL optimization</li>
+                <li>Backup / restore / DR</li>
+                <li>Query tuning</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <b>Email Systems</b>
+              <ul>
+                <li>Postfix / Dovecot</li>
+                <li>SMTP / IMAP / POP3</li>
+                <li>Mail troubleshooting</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <b>Security</b>
+              <ul>
+                <li>Audits</li>
+                <li>Forensics</li>
+                <li>Incident response</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <b>DTP / Publishing</b>
+              <ul>
+                <li>Adobe / Corel / QuarkXPress</li>
+                <li>Print production pipeline</li>
+              </ul>
+            </div>
+          </div>
+
+          <h2>Projekty</h2>
+          <div class="grid">
+            <a class="card single-panel link-card" href="https://nettg.pl" target="_blank">
+              nettg.pl
+            </a>
+            <a class="card single-panel link-card" href="https://wpr.pl" target="_blank">
+              wpr.pl
+            </a>
+            <a
+              class="card single-panel link-card"
+              href="https://solidarnosckatowice.pl"
+              target="_blank"
+            >
+              solidarnosckatowice.pl
+            </a>
+            <a class="card single-panel link-card" href="https://energiapress.pl" target="_blank">
+              energiapress.pl
+            </a>
+            <a
+              class="card single-panel link-card"
+              href="https://wydawnictwo-gospodarcze.pl"
+              target="_blank"
+            >
+              wydawnictwo-gospodarcze.pl
+            </a>
+            <a
+              class="card single-panel link-card"
+              href="https://remiza-pawlowice.com.pl"
+              target="_blank"
+            >
+              remiza-pawlowice.com.pl
+            </a>
+            <a class="card single-panel link-card" href="https://shorestudio.pl" target="_blank">
+              shorestudio.pl
+            </a>
+            <a class="card single-panel link-card" href="https://bartlomiejszopa.com" target="_blank">
+              bartlomiejszopa.com
+            </a>
+          </div>
+
+          <h2>Kontakt</h2>
+          <div class="accordion">
+            <button id="formToggle">Otwórz formularz kontaktowy</button>
+            <div id="formWrap" class="hidden">
+              <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLSdrEGxrdCG2SMNDslkPVChZ215JplKWMx3QE13K4jHWVsRcbw/viewform?embedded=true"
+              ></iframe>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <aside class="right">
+        <h3>Certyfikaty & szkolenia</h3>
+        <div class="card">
+          <b>2023</b><br />
+          Wprowadzenie do bezpieczeństwa Active Directory<br />
+          (AD w środowisku organizacyjnym)
+        </div>
+        <div class="card">
+          <b>2024</b><br />
+          Analiza powłamaniowa w Linuksie<br />
+          Zaawansowana analiza incydentów i forensic
+        </div>
+        <div class="card">
+          <b>2024</b><br />
+          Hackowanie sieci i testy penetracyjne<br />
+          Symulacja ataków + zabezpieczenia infrastruktury
+        </div>
+        <div class="card">
+          <b>2025</b><br />
+          AI / LLM Engineering<br />
+          Prompt engineering, analiza danych, generowanie grafik, workflow automatyzacji
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      <div class="copy">© 2026 Przemysław Piersiak</div>
+    </footer>
+
+    <button id="scrollTopBtn">↑</button>
+  </body>
 </html>
