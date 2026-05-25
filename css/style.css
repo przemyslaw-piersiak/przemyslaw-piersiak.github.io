@@ -119,6 +119,19 @@ a:active {
   color: #ffffff;
 }
 
+body.light .switch button {
+  background: #ffffff;
+  border-color: #d7deea;
+  color: #334155;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+body.light .switch .active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
 .grid3 {
   display: grid;
   grid-template-columns: 260px 1fr 260px;

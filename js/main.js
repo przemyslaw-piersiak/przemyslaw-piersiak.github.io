@@ -153,7 +153,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (formToggleButton && formWrapper) {
     formToggleButton.addEventListener("click", () => {
-      formWrapper.classList.toggle("hidden");
+      const isClosed = formWrapper.classList.toggle("hidden");
+      formToggleButton.textContent = isClosed ? "Otwórz formularz kontaktowy" : "Zamknij";
 
       if (formFrame && !formWrapper.classList.contains("hidden") && !formFrame.src) {
         formFrame.src = formFrame.dataset.src || "";
