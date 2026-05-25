@@ -21,12 +21,15 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  let currentProgress = 0;
+
   const setLoaderProgress = (value) => {
     if (!loaderProgressFill) {
       return;
     }
 
     const clampedValue = Math.max(0, Math.min(100, value));
+    currentProgress = clampedValue;
     loaderProgressFill.style.width = `${clampedValue}%`;
 
     if (loaderStatus) {
@@ -34,9 +37,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  const animateLoaderProgress = (target, duration = 320) => {
+    const start = currentProgress;
+    const end = Math.max(start, Math.min(100, target));
+    const startTime = performance.now();
+
+    const easeOutCubic = (time) => 1 - Math.pow(1 - time, 3);
+
+    const step = (now) => {
+      const elapsed = Math.min(1, (now - startTime) / duration);
+      const progressRatio = easeOutCubic(elapsed);
+      const nextValue = start + (end - start) * progressRatio;
+
+      setLoaderProgress(Math.round(nextValue));
+
+      if (elapsed < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+
+    window.requestAnimationFrame(step);
+  };
+
   const startLoaderProgress = () => {
-    const stages = [22, 48, 74, 90];
-    const delays = [120, 180, 220, 260];
+    const stages = [18, 44, 72, 92];
+    const delays = [150, 180, 220, 240];
     let stageIndex = 0;
 
     const advanceStage = () => {
@@ -44,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      setLoaderProgress(stages[stageIndex]);
+      animateLoaderProgress(stages[stageIndex]);
       stageIndex += 1;
 
       if (stageIndex < stages.length) {
@@ -56,13 +81,13 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const completeLoader = () => {
-    setLoaderProgress(100);
+    animateLoaderProgress(100, 360);
 
     window.setTimeout(() => {
       if (loader) {
         loader.classList.add("hidden");
       }
-    }, 180);
+    }, 320);
   };
 
   const setMode = (mode) => {
