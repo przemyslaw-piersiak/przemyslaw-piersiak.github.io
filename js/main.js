@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const cliMode = document.getElementById("cliMode");
   const formToggleButton = document.getElementById("formToggle");
   const formWrapper = document.getElementById("formWrap");
+  const formFrame = formWrapper ? formWrapper.querySelector("iframe") : null;
   const cliInput = document.getElementById("cliInput");
   const cliOutput = document.getElementById("cliOutput");
   const nodes = document.querySelectorAll(".node");
@@ -22,6 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   let currentProgress = 0;
+  let loaderAnimationFrame = 0;
+  let loaderStageTimeout = 0;
+  let isLoaderComplete = false;
 
   const setLoaderProgress = (value) => {
     if (!loaderProgressFill) {
@@ -30,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const clampedValue = Math.max(0, Math.min(100, value));
     currentProgress = clampedValue;
-    loaderProgressFill.style.width = `${clampedValue}%`;
+    loaderProgressFill.style.transform = `scaleX(${clampedValue / 100})`;
 
     if (loaderStatus) {
       loaderStatus.textContent = `Loading ${clampedValue}%`;
@@ -38,6 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const animateLoaderProgress = (target, duration = 224) => {
+    window.cancelAnimationFrame(loaderAnimationFrame);
+
     const start = currentProgress;
     const end = Math.max(start, Math.min(100, target));
     const startTime = performance.now();
@@ -52,20 +58,20 @@ document.addEventListener("DOMContentLoaded", () => {
       setLoaderProgress(Math.round(nextValue));
 
       if (elapsed < 1) {
-        window.requestAnimationFrame(step);
+        loaderAnimationFrame = window.requestAnimationFrame(step);
       }
     };
 
-    window.requestAnimationFrame(step);
+    loaderAnimationFrame = window.requestAnimationFrame(step);
   };
 
   const startLoaderProgress = () => {
-    const stages = [18, 44, 72, 92];
-    const delays = [105, 126, 154, 168];
+    const stages = [28, 58, 86, 96];
+    const delays = [80, 95, 110, 125];
     let stageIndex = 0;
 
     const advanceStage = () => {
-      if (stageIndex >= stages.length) {
+      if (isLoaderComplete || stageIndex >= stages.length) {
         return;
       }
 
@@ -73,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
       stageIndex += 1;
 
       if (stageIndex < stages.length) {
-        window.setTimeout(advanceStage, delays[stageIndex - 1]);
+        loaderStageTimeout = window.setTimeout(advanceStage, delays[stageIndex - 1]);
       }
     };
 
@@ -81,13 +87,25 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const completeLoader = () => {
-    animateLoaderProgress(100, 252);
+    if (isLoaderComplete) {
+      return;
+    }
+
+    isLoaderComplete = true;
+    window.clearTimeout(loaderStageTimeout);
+    animateLoaderProgress(100, 180);
 
     window.setTimeout(() => {
       if (loader) {
         loader.classList.add("hidden");
       }
-    }, 224);
+    }, 180);
+  };
+
+  const scheduleLoaderCompletion = () => {
+    window.requestAnimationFrame(() => {
+      window.setTimeout(completeLoader, 160);
+    });
   };
 
   const setMode = (mode) => {
@@ -136,6 +154,10 @@ document.addEventListener("DOMContentLoaded", () => {
   if (formToggleButton && formWrapper) {
     formToggleButton.addEventListener("click", () => {
       formWrapper.classList.toggle("hidden");
+
+      if (formFrame && !formWrapper.classList.contains("hidden") && !formFrame.src) {
+        formFrame.src = formFrame.dataset.src || "";
+      }
     });
   }
 
@@ -220,7 +242,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   startLoaderProgress();
 
-  window.addEventListener("load", completeLoader);
+  scheduleLoaderCompletion();
+  window.addEventListener("load", completeLoader, { once: true });
 
   if (scrollButton) {
     window.addEventListener("scroll", () => {
