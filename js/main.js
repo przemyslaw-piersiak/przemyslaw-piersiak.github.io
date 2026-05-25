@@ -140,6 +140,53 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (cliInput && cliOutput) {
+    const applyLowercase = () => {
+      const value = cliInput.value;
+      const lowercasedValue = value.toLowerCase();
+
+      if (value !== lowercasedValue) {
+        const start = cliInput.selectionStart;
+        const end = cliInput.selectionEnd;
+        cliInput.value = lowercasedValue;
+
+        if (start !== null && end !== null) {
+          cliInput.setSelectionRange(start, end);
+        }
+      }
+    };
+
+    cliInput.addEventListener("beforeinput", (event) => {
+      if (!event.data) {
+        return;
+      }
+
+      const inputTypes = [
+        "insertText",
+        "insertReplacementText",
+        "insertFromPaste",
+        "insertFromDrop",
+        "insertCompositionText"
+      ];
+
+      if (!inputTypes.includes(event.inputType)) {
+        return;
+      }
+
+      event.preventDefault();
+
+      const lowercasedData = event.data.toLowerCase();
+      const start = cliInput.selectionStart ?? 0;
+      const end = cliInput.selectionEnd ?? start;
+      const currentValue = cliInput.value;
+      const nextValue =
+        currentValue.slice(0, start) + lowercasedData + currentValue.slice(end);
+
+      cliInput.value = nextValue;
+      cliInput.setSelectionRange(start + lowercasedData.length, start + lowercasedData.length);
+    });
+
+    cliInput.addEventListener("input", applyLowercase);
+
     cliInput.addEventListener("keydown", (event) => {
       if (event.key !== "Enter") {
         return;
