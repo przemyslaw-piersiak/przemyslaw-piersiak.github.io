@@ -45,7 +45,13 @@
   </head>
   <body class="dark">
     <div id="loader">
-      <div class="spinner"></div>
+      <div class="loader-content">
+        <div class="spinner"></div>
+        <div id="loaderStatus" class="loader-status" aria-live="polite">Loading 0%</div>
+        <div class="loader-progress" aria-hidden="true">
+          <div id="loaderProgressFill" class="loader-progress-fill"></div>
+        </div>
+      </div>
     </div>
 
     <div class="topbar">

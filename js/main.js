@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const nodes = document.querySelectorAll(".node");
   const themeColorMeta = document.querySelector('meta[name="theme-color"]');
   const loader = document.getElementById("loader");
+  const loaderStatus = document.getElementById("loaderStatus");
+  const loaderProgressFill = document.getElementById("loaderProgressFill");
   const scrollButton = document.getElementById("scrollTopBtn");
   const themeKey = "theme";
 
@@ -18,6 +20,50 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("UI init failed");
     return;
   }
+
+  const setLoaderProgress = (value) => {
+    if (!loaderProgressFill) {
+      return;
+    }
+
+    const clampedValue = Math.max(0, Math.min(100, value));
+    loaderProgressFill.style.width = `${clampedValue}%`;
+
+    if (loaderStatus) {
+      loaderStatus.textContent = `Loading ${clampedValue}%`;
+    }
+  };
+
+  const startLoaderProgress = () => {
+    const stages = [22, 48, 74, 90];
+    const delays = [120, 180, 220, 260];
+    let stageIndex = 0;
+
+    const advanceStage = () => {
+      if (stageIndex >= stages.length) {
+        return;
+      }
+
+      setLoaderProgress(stages[stageIndex]);
+      stageIndex += 1;
+
+      if (stageIndex < stages.length) {
+        window.setTimeout(advanceStage, delays[stageIndex - 1]);
+      }
+    };
+
+    advanceStage();
+  };
+
+  const completeLoader = () => {
+    setLoaderProgress(100);
+
+    window.setTimeout(() => {
+      if (loader) {
+        loader.classList.add("hidden");
+      }
+    }, 180);
+  };
 
   const setMode = (mode) => {
     const isUiMode = mode === "ui";
@@ -100,13 +146,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      if (loader) {
-        loader.classList.add("hidden");
-      }
-    }, 250);
-  });
+  startLoaderProgress();
+
+  window.addEventListener("load", completeLoader);
 
   if (scrollButton) {
     window.addEventListener("scroll", () => {
