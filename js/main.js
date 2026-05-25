@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const animateLoaderProgress = (target, duration = 320) => {
+  const animateLoaderProgress = (target, duration = 224) => {
     const start = currentProgress;
     const end = Math.max(start, Math.min(100, target));
     const startTime = performance.now();
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const startLoaderProgress = () => {
     const stages = [18, 44, 72, 92];
-    const delays = [150, 180, 220, 240];
+    const delays = [105, 126, 154, 168];
     let stageIndex = 0;
 
     const advanceStage = () => {
@@ -81,13 +81,13 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const completeLoader = () => {
-    animateLoaderProgress(100, 360);
+    animateLoaderProgress(100, 252);
 
     window.setTimeout(() => {
       if (loader) {
         loader.classList.add("hidden");
       }
-    }, 320);
+    }, 224);
   };
 
   const setMode = (mode) => {
