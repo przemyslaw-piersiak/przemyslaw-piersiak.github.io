@@ -447,7 +447,7 @@ body.light .spinner {
 
   .about {
     order: 2;
-    display: flex;
+    display: content;
   }
   
   .topbar {
