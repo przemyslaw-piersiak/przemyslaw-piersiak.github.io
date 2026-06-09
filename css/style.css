@@ -423,7 +423,7 @@ body.light .spinner {
     flex-direction: column;
     grid-template-columns: 1fr;
   }
-
+  
   .center,
   .left,
   .right {
@@ -439,7 +439,17 @@ body.light .spinner {
     order: 3;
     display: contents;
   }
-   
+
+  .skills {
+    order: 3;
+    display: flex;
+  }
+
+  .about {
+    order: 2;
+    display: flex;
+  }
+  
   .topbar {
     flex-direction: column;
     gap: 12px;
