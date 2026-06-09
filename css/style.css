@@ -419,9 +419,27 @@ body.light .spinner {
   }
 
   .grid3 {
+    display: flex;
+    flex-direction: column;
     grid-template-columns: 1fr;
   }
 
+  .center,
+  .left,
+  .right {
+    display: contents;
+  }
+
+  .user {
+    order: 1;
+    display: contents;
+  }
+
+  .user-skills {
+    order: 3;
+    display: contents;
+  }
+   
   .topbar {
     flex-direction: column;
     gap: 12px;
