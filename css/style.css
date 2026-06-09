@@ -430,6 +430,15 @@ body.light .spinner {
     display: contents;
   }
 
+  .right {
+    order: 3;
+  }
+
+  .right, .right .card, .right h3  {
+    order: 3;
+    display: contents;
+  }
+  
   .user {
     order: 1;
     display: contents;
@@ -441,6 +450,11 @@ body.light .spinner {
   }
 
   .skills {
+    order: 3;
+    display: flex;
+  }
+
+  .skills .role {
     order: 3;
     display: flex;
   }
