@@ -449,6 +449,11 @@ body.light .spinner {
     order: 2;
     display: content;
   }
+
+  .contact {
+    order: 4;
+    display: content;
+  }
   
   .topbar {
     flex-direction: column;
