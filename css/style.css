@@ -461,12 +461,12 @@ body.light .spinner {
 
   .about {
     order: 2;
-    display: content;
+    display: contents;
   }
 
   .contact {
     order: 4;
-    display: content;
+    display: contents;
   }
   
   .topbar {
