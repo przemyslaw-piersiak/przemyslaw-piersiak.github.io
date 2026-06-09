@@ -418,6 +418,10 @@ body.light .spinner {
     width: 100%;
   }
 
+  .block {
+    display: grid;
+  }
+  
   .grid3 {
     display: flex;
     flex-direction: column;
