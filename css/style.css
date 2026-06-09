@@ -418,59 +418,40 @@ body.light .spinner {
     width: 100%;
   }
 
-  .block {
-    display: grid;
-  }
-  
   .grid3 {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     grid-template-columns: 1fr;
+    gap: 12px;
   }
-  
-  .center,
+
   .left,
-  .right {
+  .center,
+  .block {
     display: contents;
   }
 
-  .right {
-    order: 3;
-  }
-
-  .right, .right .card, .right h3  {
-    order: 3;
-    display: contents;
-  }
-  
   .user {
     order: 1;
-    display: contents;
-  }
-
-  .user-skills {
-    order: 3;
-    display: contents;
-  }
-
-  .skills {
-    order: 3;
-    display: grid;
-  }
-
-  .skills .role {
-    order: 3;
-    display: flex;
   }
 
   .about {
     order: 2;
-    display: contents;
+  }
+
+  .user-skills {
+    order: 3;
+  }
+
+  .grid {
+    order: 4;
+  }
+
+  .right {
+    order: 5;
   }
 
   .contact {
-    order: 4;
-    display: contents;
+    order: 6;
   }
   
   .topbar {
