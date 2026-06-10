@@ -312,6 +312,8 @@ body.light iframe {
   border-radius: 12px;
   border: 1px solid transparent;
   transition: 0.2s ease;
+  white-space: nowrap;
+  font-size: 0.9rem;
 }
 
 #scrollTopBtn {
