@@ -170,9 +170,12 @@ body.light .switch .active {
   gap: 10px;
 }
 
+.projects > h2 {
+    grid-column: 1 / -1;
+}
+
 .card,
 .node,
-.topbar,
 .cli-window,
 .link-card {
   background: var(--panel);
@@ -409,6 +412,8 @@ body.light .spinner {
     transform: rotate(360deg);
   }
 }
+
+
 
 @media (max-width: 768px) {
   .grid3,
